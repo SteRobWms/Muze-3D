@@ -1,0 +1,2 @@
+module FavoriteExhibitsHelper
+end

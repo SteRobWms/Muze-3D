@@ -1,0 +1,2 @@
+module FavoriteMuseumsHelper
+end
