@@ -1,30 +1,34 @@
 {
-  "name": "working_title_frontend",
-  "version": "0.0.1",
+  "name": "working-title-frontend",
+  "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "start": "node node_modules/react-360/scripts/packager.js",
-    "bundle": "node node_modules/react-360/scripts/bundle.js",
-    "open": "node -e \"require('xopen')('http://localhost:8081/index.html')\"",
-    "devtools": "react-devtools",
-    "test": "jest"
-  },
   "dependencies": {
-    "react": "16.3.2",
-    "react-native": "~0.55.4",
-    "three": "^0.87.0",
-    "react-360": "~1.1.0",
-    "react-360-web": "~1.1.0"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
   },
-  "devDependencies": {
-    "babel-jest": "^19.0.0",
-    "babel-preset-react-native": "^1.9.1",
-    "jest": "^19.0.2",
-    "react-devtools": "^2.5.2",
-    "react-test-renderer": "16.0.0",
-    "xopen": "1.0.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "jest": {
-    "preset": "react-360"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
