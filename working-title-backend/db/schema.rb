@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_151531) do
     t.integer "museum_id", null: false
     t.string "name"
     t.string "description"
-    t.integer "length"
+    t.integer "depth"
     t.integer "width"
     t.integer "height"
     t.string "background_image"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_151531) do
     t.string "city_of_origin"
     t.integer "year_of_origin"
     t.string "image"
-    t.integer "length"
+    t.integer "depth"
     t.integer "width"
     t.integer "height"
     t.string "model"
