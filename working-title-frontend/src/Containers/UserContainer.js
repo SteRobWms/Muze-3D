@@ -53,6 +53,7 @@ export default class UserContainer extends React.Component {
                     ? userData.favorite_museums.map(museum => <li>{museum.name}</li>)
                     : "You haven't liked any museums yet!"}
                 </li>
+                <img src="https://lh3.googleusercontent.com/e4o2aXJCbJQ1NkA6zLl8MTfwLFujGJ81kOBT2PQK4nbV8RnI2Cq-Jrw0QzBcsnYMk5ujoD1J45k2xHV7dj6n5gMXZ-jJYfs08CDinf5YPFhchcKALgNVLitOR7bcYtg8lyBM8rIivg=w473-h630-no" alt="link broken" />
             </div>
         )
     }
