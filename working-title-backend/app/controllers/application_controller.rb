@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-    before_action :logged_in?
+    # before_action :logged_in?
 
 
     private
