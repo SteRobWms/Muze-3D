@@ -1,12 +1,32 @@
 import React from 'react'
 
-export default function Museum(props) {
+export default class Museum extends React.Component {
 
-    return (
-        <div>
-            <h3>Name: {props.museum.name}</h3>
-            <h3>Category: {props.museum.category}</h3>
-            <h3>City: {props.museum.city}</h3>
-        </div>
-    )
+    state = {
+        museum: {
+            id: "",
+            name: "",
+            category: "",
+            city: ""
+        }
+    }
+
+    componentDidMount() {
+        fetch(`http://localhost:3000/museums/${this.props.match.params.id}`)
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ museum: data })
+                console.log(data)
+            })
+    }
+
+    render() {
+        return (
+            <div>
+                <h3>Name: {this.state.museum.name}</h3>
+                <h3>Category: {this.state.museum.category}</h3>
+                <h3>City: {this.state.museum.city}</h3>
+            </div>
+        )
+    }
 }
