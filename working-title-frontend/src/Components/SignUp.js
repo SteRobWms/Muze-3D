@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default class SignUp extends React.Component {
 
@@ -13,6 +14,7 @@ export default class SignUp extends React.Component {
                     <input onChange={null} name="password" type="password" />
                     <input type="submit" />
                 </form>
+                <Link to="/login">Log In</Link>
             </div>
         )
     }

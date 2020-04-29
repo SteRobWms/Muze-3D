@@ -15,8 +15,14 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.create(user_params)
-        render json: @user
+        user = User.new(user_params)
+        
+        if user.valid?
+            user.save
+            render json: {user: UserSerializer.new(user)}, status: :created
+        else
+            render json: {error: "Failed to create a user"}, status: :not_acceptable
+        end
     end
 
     def edit
@@ -34,7 +40,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :bio)
+        params.require(:user).permit(:username, :password, :bio)
     end
 
     def set_current_user
