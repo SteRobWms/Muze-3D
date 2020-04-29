@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from '../Components/Login'
-import Register from '../Components/Register'
+import SignUp from '../Components/SignUp'
 
 export default class LoginContainer extends React.Component {
 
@@ -20,7 +20,7 @@ export default class LoginContainer extends React.Component {
                 display = <Login />
                 break;
             case "register":
-                display = <Register />
+                display = <SignUp />
                 break;
             default:
                 display = <Login />

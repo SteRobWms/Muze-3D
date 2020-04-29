@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default class Login extends React.Component {
+export default class SignUp extends React.Component {
 
     handleChange = (e) => {
         // console.log(e.target)
@@ -10,18 +10,20 @@ export default class Login extends React.Component {
         })
     }
 
-    login = (e) => {
+    signUp = (e) => {
         e.preventDefault()
         e.target.reset()
 
-        fetch("http://localhost:3000/login", {
+        fetch("http://localhost:3000/users", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password
+                user: {
+                    username: this.state.username,
+                    password: this.state.password
+                }
             })
         })
             .then(response => response.json())
@@ -31,15 +33,15 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
-                <h2>Login</h2>
-                <form name="login" onSubmit={(e) => this.login(e)}>
+                <h2>Sign Up</h2>
+                <form name="register" onSubmit={(e) => this.signUp(e)}>
                     <label>Username</label>
                     <input onChange={(e) => this.handleChange(e)} name="username" type="text" />
                     <label>Password</label>
                     <input onChange={(e) => this.handleChange(e)} name="password" type="password" />
                     <input type="submit" />
                 </form>
-                <Link to="/signup">Sign Up</Link>
+                <Link to="/login">Log In</Link>
             </div>
         )
     }

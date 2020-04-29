@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Museum from '../Components/Museum'
+import { Link } from 'react-router-dom'
 
 export default function MuseumContainer() {
 
@@ -17,11 +18,19 @@ export default function MuseumContainer() {
 
     return (
         <div>
-            <ul>
-                {displayMuseums
-                    ? displayMuseums.map((museum, idx) => <Museum key={idx} museum={museum} />)
-                    : 'loading...'}
-            </ul>
+            {displayMuseums
+                ? displayMuseums.map((museum, idx) => {
+                    return (
+                        <a style={{ margin: "10px", "borderRadius": "10px", width: "300px", display: "block", color: "black", border: "solid black 1px", backgroundColor: "skyblue" }} className="list" href={`http://localhost:3001/museums/${idx + 1}`}>
+                            <div>
+                                Name: {museum.name}<br />
+                                Category: {museum.category}<br />
+                                City: {museum.city}
+                            </div>
+                        </a>
+                    )
+                })
+                : 'loading...'}
         </div>
     )
 }

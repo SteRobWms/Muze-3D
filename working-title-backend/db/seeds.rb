@@ -5,10 +5,10 @@ Exhibit.destroy_all
 Museum.destroy_all
 User.destroy_all
 
-u1 = User.create(username: "stephen", password_digest: "guest", bio: "I fux with code")
-u2 = User.create(username: "anam", password_digest: "guest", bio: "I like rocks")
-u3 = User.create(username: "paul", password_digest: "guest", bio: "I lie in bed all day, coding while my beard grows")
-u4 = User.create(username: "caleb", password_digest: "guest", bio: "I don't use a mouse, and I watch Paul's beard grow")
+u1 = User.create(username: "stephen", password_digest: BCrypt::Password.create('guest'), bio: "I fux with code")
+u2 = User.create(username: "anam", password_digest: BCrypt::Password.create('guest'), bio: "I like rocks")
+u3 = User.create(username: "paul", password_digest: BCrypt::Password.create('guest'), bio: "I lie in bed all day, coding while my beard grows")
+u4 = User.create(username: "caleb", password_digest: BCrypt::Password.create('guest'), bio: "I don't use a mouse, and I watch Paul's beard grow")
 
 m1 = Museum.create(user_id: u1.id, name: "Cullen Sculpture Garden", description: 
 "A collection of original and replica sculptures connected to the Glassell School of Art, placed in a park environment", country: "USA", state: "Texas", city: "Houston", category: "Art")

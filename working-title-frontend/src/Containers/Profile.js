@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class UserContainer extends React.Component {
+export default class Profile extends React.Component {
 
     state = {
         currentDisplay: "",
