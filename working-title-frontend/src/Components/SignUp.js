@@ -12,6 +12,7 @@ export default class SignUp extends React.Component {
 
     signUp = (e) => {
         e.preventDefault()
+        e.target.reset()
 
         fetch("http://localhost:3000/users", {
             method: "POST",
@@ -19,8 +20,10 @@ export default class SignUp extends React.Component {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password
+                user: {
+                    username: this.state.username,
+                    password: this.state.password
+                }
             })
         })
             .then(response => response.json())

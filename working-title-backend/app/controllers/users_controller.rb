@@ -16,10 +16,10 @@ class UsersController < ApplicationController
 
     def create
         user = User.new(user_params)
-        
         if user.valid?
             user.save
             render json: {user: UserSerializer.new(user)}, status: :created
+            byebug
         else
             render json: {error: "Failed to create a user"}, status: :not_acceptable
         end
