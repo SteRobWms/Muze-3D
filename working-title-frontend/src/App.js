@@ -12,11 +12,12 @@ import MuseumContainer from './Containers/MuseumContainer';
 import NavBar from './Containers/NavBar';
 import SignUp from './Components/SignUp';
 import Profile from './Containers/Profile';
+import VrPortal from './Containers/VrPortal';
 
 export default class App extends React.Component {
 
     state = {
-
+        loginStatus: false
     }
 
     setUserLocalStorage = (user_id) => {
@@ -47,11 +48,33 @@ export default class App extends React.Component {
             })
     }
 
+    loggedInTrue = () => {
+        fetch("http://localhost:3000/loggedin", {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
+            .then(response => response.json())
+            .then(loginStatus => {
+                if (loginStatus.error) {
+                    this.setState({
+                        loginStatus: false
+                    })
+                }
+                else {
+                    this.setState({
+                        loginStatus: true
+                    })
+                }
+            })
+    }
+
     render() {
         return (
             <BrowserRouter>
                 <div className="App">
-                    <NavBar />
+                    <NavBar loggedInTrue={this.loggedInTrue} loginStatus={this.state.loginStatus} />
                     {/* <DynamicComponent currentDisplay={this.state.currentDisplay} /> */}
                     <Switch>
                         <Route exact path="/" render={(routerProps) => <Home {...routerProps} />} />
@@ -76,7 +99,7 @@ export default class App extends React.Component {
                         <Route exact path="/profile/edit" render={(routerProps) => <div {...routerProps} >Edit Profile Form</div>} />
 
                         <Route exact path="/signup" render={(routerProps) => <SignUp {...routerProps} setUserLocalStorage={this.setUserLocalStorage} setUserState={this.setUserState} loggedIn={this.loggedIn} />} />
-                        <Route exact path="/vrportal" render={(routerProps) => <div {...routerProps} ><a href="http://localhost:8081/index.html"><button>Vr Portal</button></a></div>} />
+                        <Route exact path="/vrportal" render={(routerProps) => <VrPortal {...routerProps} loggedIn={this.loggedIn} />} />
                     </Switch>
                 </div>
             </BrowserRouter>

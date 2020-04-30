@@ -4,11 +4,9 @@ import Exhibit from '../Components/Exhibit'
 export default class ExhibitContainer extends React.Component {
 
     state = {
-        exhibits: [],
-        displayExhibits: []
     }
 
-    componentDidMount() {
+    getExhibits = () => {
         fetch('http://localhost:3000/exhibits')
             .then(response => response.json())
             .then(exhibits => {
@@ -19,11 +17,17 @@ export default class ExhibitContainer extends React.Component {
             })
     }
 
+    componentDidMount() {
+        this.props.loggedIn(this.props.history)
+        this.getExhibits()
+    }
+
     render() {
         return (
             <div>
                 <ul>
                     {this.state.displayExhibits
+                        //replace <Exhibit> with <ExhibitThumb>
                         ? this.state.displayExhibits.map((exhibit, idx) => <Exhibit key={idx} exhibit={exhibit} />)
                         : 'loading...'}
                 </ul>

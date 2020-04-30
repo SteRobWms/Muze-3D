@@ -20,14 +20,12 @@ export default class Profile extends React.Component {
                 <div>
                     <h1>Username: {this.state.user.username}</h1>
                     <h2>Bio: {this.state.user.bio}</h2>
-                    <ul>Museums: {this.state.user.museums
-                        ? this.state.user.museums.map(museum => <li>{museum.name}</li>)
-                        : "You haven't created any museums yet!"}
-                    </ul>
-                    <ul>Favorite Museums: {this.state.user.favorite_museums
-                        ? this.state.user.favorite_museums.map(museum => <li>{museum.name}</li>)
-                        : "You haven't liked any museums yet!"}
-                    </ul>
+                    <h2>Museums:</h2> {this.state.user.museums.length > 0
+                        ? this.state.user.museums.map(museum => <h4>{museum.name}</h4>)
+                        : <h4>"You haven't created any museums yet!"</h4>}
+                    <h2>Favorite Museums:</h2> {this.state.user.favorite_museums
+                        ? this.state.user.favorite_museums.map(museum => <h4>{museum.name}</h4>)
+                        : <h4>"You haven't liked any museums yet!"</h4>}
                 </div>
             )
         }
