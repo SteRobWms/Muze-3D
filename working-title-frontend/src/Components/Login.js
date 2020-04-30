@@ -27,8 +27,9 @@ export default class Login extends React.Component {
             .then(response => response.json())
             .then(userInfo => {
                 localStorage.token = userInfo.token
-                this.props.setUser(userInfo.username)
+                this.props.setUserLocalStorage(userInfo.user.id)
             })
+            .then(() => this.props.history.push("/profile"))
     }
 
     render() {

@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :museums
+  attributes :id, :username, :bio, :museums
 
   def museums
     self.object.museums.map do |museum|

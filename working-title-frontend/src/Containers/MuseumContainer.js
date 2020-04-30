@@ -6,27 +6,20 @@ export default class MuseumContainer extends React.Component {
     state = {
     }
 
-    componentDidMount() {
-        // this.props.loginCheck()
-        fetch('http://localhost:3000/museums', {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${localStorage.token}`
-            }
-        })
+    getMuseums = () => {
+        fetch('http://localhost:3000/museums')
             .then(response => response.json())
             .then(museums => {
-                if (museums.error) {
-                    this.props.history.push("/")
-                }
-                else {
-                    this.setState({
-                        museums,
-                        displayMuseums: museums
-                    })
-                    // console.log(museums)
-                }
+                this.setState({
+                    museums,
+                    displayMuseums: museums
+                })
             })
+    }
+
+    componentDidMount() {
+        this.props.loggedIn(this.props.history)
+        this.getMuseums()
     }
 
     render() {
