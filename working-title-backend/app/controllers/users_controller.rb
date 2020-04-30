@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
 
+    before_action :logged_in?, only: [:profile]
     before_action :set_current_user, only: [:show, :edit, :update, :destroy]
-
+    
     def index
         @users = User.all 
         render json: @users
+    end
+
+    def profile
+        render json: @user
     end
 
     def show
@@ -19,9 +24,10 @@ class UsersController < ApplicationController
         if user.valid?
             user.save
             render json: {user: UserSerializer.new(user)}, status: :created
-            byebug
+        elsif User.find_by(username: user_params[:username])
+            render json: {error: "Username is taken"}, status: :not_acceptable
         else
-            render json: {error: "Failed to create a user"}, status: :not_acceptable
+            render json: {error: "Something went wrong. Please try again."}
         end
     end
 

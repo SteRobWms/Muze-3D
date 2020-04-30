@@ -1,5 +1,4 @@
 class MuseumsController < ApplicationController
-
     before_action :set_current_museum, only: [:show, :edit, :update, :destroy]
 
     def index

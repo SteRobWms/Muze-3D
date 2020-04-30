@@ -1,27 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Exhibit from '../Components/Exhibit'
 
-export default function ExhibitContainer() {
+export default class ExhibitContainer extends React.Component {
 
-    const [exhibits, setExhibits] = useState([])
-    const [displayExhibits, setDisplayExhibits] = useState([])
+    state = {
+    }
 
-    useEffect(() => {
+    getExhibits = () => {
         fetch('http://localhost:3000/exhibits')
             .then(response => response.json())
             .then(exhibits => {
-                setExhibits(exhibits)
-                setDisplayExhibits(exhibits)
+                this.setState({
+                    exhibits,
+                    displayExhibits: exhibits
+                })
             })
-    })
+    }
 
-    return (
-        <div>
-            <ul>
-                {displayExhibits
-                    ? displayExhibits.map((exhibit, idx) => <Exhibit key={idx} exhibit={exhibit} />)
-                    : 'loading...'}
-            </ul>
-        </div>
-    )
+    componentDidMount() {
+        this.props.loggedIn(this.props.history)
+        this.getExhibits()
+    }
+
+    render() {
+        return (
+            <div>
+                <ul>
+                    {this.state.displayExhibits
+                        //replace <Exhibit> with <ExhibitThumb>
+                        ? this.state.displayExhibits.map((exhibit, idx) => <Exhibit key={idx} exhibit={exhibit} />)
+                        : 'loading...'}
+                </ul>
+            </div >
+        )
+    }
 }
