@@ -25,7 +25,9 @@ export default class Login extends React.Component {
             })
         })
             .then(response => response.json())
-            .then(console.log)
+            .then(userInfo => {
+                localStorage.token = userInfo.token
+            })
     }
 
     render() {

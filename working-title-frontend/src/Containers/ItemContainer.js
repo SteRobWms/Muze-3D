@@ -1,27 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Item from '../Components/Item'
 
-export default function ItemContainer() {
+export default class ItemContainer extends React.Component {
 
-    const [items, setItems] = useState([])
-    const [displayItems, setDisplayItems] = useState([])
+    state = {
+        items: [],
+        displayItems: []
+    }
 
-    useEffect(() => {
+    componentDidMount() {
         fetch('http://localhost:3000/items')
             .then(response => response.json())
             .then(items => {
-                setItems(items)
-                setDisplayItems(items)
+                this.setState({
+                    items,
+                    displayItems: items
+                })
             })
-    })
+    }
 
-    return (
-        <div>
-            <ul>
-                {displayItems
-                    ? displayItems.map((item, idx) => <Item key={idx} item={item} />)
-                    : 'loading...'}
-            </ul>
-        </div>
-    )
+    render() {
+        return (
+            <div>
+                <ul>
+                    {this.state.displayItems
+                        ? this.state.displayItems.map((item, idx) => <Item key={idx} item={item} />)
+                        : 'loading...'}
+                </ul>
+            </div>
+        )
+    }
 }

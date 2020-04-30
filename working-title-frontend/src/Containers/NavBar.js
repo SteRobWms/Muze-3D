@@ -12,6 +12,7 @@ export default class NavBar extends React.Component {
                 <Link to="/exhibits">Exhibits</Link>
                 <Link to="/items">Items</Link>
                 <Link to="/vrportal">VR Portal</Link>
+                <button onClick={() => localStorage.clear()}>Logout</button>
 
                 {/* <button onClick={() => this.props.handleClick('loginContainer')}>Login/Register</button>
                 <button onClick={() => this.props.handleClick('vrPortal')}>VR Portal</button>

@@ -58,7 +58,7 @@ export default class App extends React.Component {
                         <Route exact path="/profile/edit" render={(routerProps) => <div {...routerProps}>Edit Profile Form</div>} />
 
                         <Route exact path="/signup" render={(routerProps) => <SignUp {...routerProps} />} />
-                        <Route exact path="/vrportal" render={(routerProps) => <div {...routerProps}>Vr Portal</div>} />
+                        <Route exact path="/vrportal" render={(routerProps) => <div {...routerProps}><a href="http://localhost:8081/index.html"><button>Vr Portal</button></a></div>} />
                     </Switch>
                 </div>
             </BrowserRouter>
