@@ -20,9 +20,10 @@ class UsersController < ApplicationController
         if user.valid?
             user.save
             render json: {user: UserSerializer.new(user)}, status: :created
-            byebug
+        elsif User.find_by(username: user_params[:username])
+            render json: {error: "Username is taken"}, status: :not_acceptable
         else
-            render json: {error: "Failed to create a user"}, status: :not_acceptable
+            render json: {error: "Something went wrong. Please try again."}
         end
     end
 

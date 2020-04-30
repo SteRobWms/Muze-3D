@@ -1,16 +1,12 @@
 class ApplicationController < ActionController::Base
     skip_before_action :verify_authenticity_token
+    # before_action :logsomething
     before_action :logged_in?
-    before_action :logsomething
 
     "Here-Is-Your-Easter-Egg-You-1337-H4X0R"
 
-    def encode_token(payload)    
+    def encode_token(payload)
         JWT.encode(payload, "Here-Is-Your-Easter-Egg-You-1337-H4X0R")
-    end
-
-    def logsomething
-        render json: {hi: "fortheloveofGod, work!"}
     end
 
     def logged_in?
@@ -18,20 +14,13 @@ class ApplicationController < ActionController::Base
         token = headers.split(" ")[1]
         begin
             user_id = JWT.decode(token, "Here-Is-Your-Easter-Egg-You-1337-H4X0R")[0]["user_id"]
-            user = User.find(user_id)
+            @user = User.find(user_id)
         rescue
-            user = nil
+            @user = nil
         # ensure
             #always runs with an error or without
         end
-        render json: {error: "Please log in!"} unless user
-
-    end
-
-    private
-    
-    def logged_in?
-        
+        render json: {error: "Please log in!"} unless @user
     end
 
 end

@@ -1,6 +1,5 @@
 class MuseumsController < ApplicationController
     before_action :set_current_museum, only: [:show, :edit, :update, :destroy]
-    skip_before_action :logged_in?
 
     def index
         @museums = Museum.all 

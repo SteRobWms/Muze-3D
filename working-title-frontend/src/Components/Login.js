@@ -27,6 +27,7 @@ export default class Login extends React.Component {
             .then(response => response.json())
             .then(userInfo => {
                 localStorage.token = userInfo.token
+                this.props.setUser(userInfo.username)
             })
     }
 
@@ -36,9 +37,9 @@ export default class Login extends React.Component {
                 <h2>Login</h2>
                 <form name="login" onSubmit={(e) => this.login(e)}>
                     <label>Username</label>
-                    <input onChange={(e) => this.handleChange(e)} name="username" type="text" />
+                    <input onChange={(e) => this.handleChange(e)} name="username" type="text" required />
                     <label>Password</label>
-                    <input onChange={(e) => this.handleChange(e)} name="password" type="password" />
+                    <input onChange={(e) => this.handleChange(e)} name="password" type="password" required />
                     <input type="submit" />
                 </form>
                 <Link to="/signup">Sign Up</Link>

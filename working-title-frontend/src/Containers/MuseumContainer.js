@@ -4,25 +4,29 @@ import React from 'react'
 export default class MuseumContainer extends React.Component {
 
     state = {
-        museums: [],
-        displayMuseums: []
     }
 
-    // componentDidMount() {
-    //     fetch('http://localhost:3000/museums')
-    //         .then(response => response.json())
-    //         .then(museums => {
-    //             this.setState({
-    //                 museums,
-    //                 displayMuseums: museums
-    //             })
-    //         })
-    // }
-
-    testForLoggedIn = () => {
-        fetch('http://localhost:3000/museums')
+    componentDidMount() {
+        // this.props.loginCheck()
+        fetch('http://localhost:3000/museums', {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
             .then(response => response.json())
-            .then(console.log)
+            .then(museums => {
+                if (museums.error) {
+                    this.props.history.push("/")
+                }
+                else {
+                    this.setState({
+                        museums,
+                        displayMuseums: museums
+                    })
+                    // console.log(museums)
+                }
+            })
     }
 
     render() {
@@ -41,7 +45,7 @@ export default class MuseumContainer extends React.Component {
                         )
                     })
                     : 'loading...'}
-                <button onClick={() => this.testForLoggedIn()}>O</button>
+                {/* <button onClick={() => this.testForLoggedIn()}>O</button> */}
             </div >
         )
     }

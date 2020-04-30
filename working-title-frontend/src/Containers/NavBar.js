@@ -6,12 +6,12 @@ export default class NavBar extends React.Component {
     render() {
         return (
             <div>
-                <Link to="/login">Login/Register</Link>
-                <Link to="/profile">Profile</Link>
-                <Link to="/museums">Museums</Link>
-                <Link to="/exhibits">Exhibits</Link>
-                <Link to="/items">Items</Link>
-                <Link to="/vrportal">VR Portal</Link>
+                <Link className={"navBarButton"} to="/login">Login / Sign Up</Link>
+                <Link className={"navBarButton"} to="/profile">Profile</Link>
+                <Link className={"navBarButton"} to="/museums">Museums</Link>
+                <Link className={"navBarButton"} to="/exhibits">Exhibits</Link>
+                <Link className={"navBarButton"} to="/items">Items</Link>
+                <Link className={"navBarButton"} to="/vrportal">VR Portal</Link>
                 <button onClick={() => localStorage.clear()}>Logout</button>
 
                 {/* <button onClick={() => this.props.handleClick('loginContainer')}>Login/Register</button>

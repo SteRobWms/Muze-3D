@@ -13,9 +13,7 @@ class AuthController < ApplicationController
     end
 
     def check
-    
-        
-    
+        # render json: {currentUser: @user.username}
     end
 
 end
