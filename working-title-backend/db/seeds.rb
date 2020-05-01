@@ -1,6 +1,7 @@
 FavoriteMuseum.destroy_all
 FavoriteExhibit.destroy_all
 Item.destroy_all
+Room.destroy_all
 Exhibit.destroy_all
 Museum.destroy_all
 User.destroy_all
@@ -34,13 +35,18 @@ FavoriteMuseum.create(user_id: u1.id, museum_id: m2.id)
 FavoriteMuseum.create(user_id: u2.id, museum_id: m2.id)
 FavoriteMuseum.create(user_id: u3.id, museum_id: m1.id)
 
+r1 = Room.create(exhibit_id: e1.id)
+r2 = Room.create(exhibit_id: e1.id)
+r3 = Room.create(exhibit_id: e1.id)
+r4 = Room.create(exhibit_id: e1.id)
+r5 = Room.create(exhibit_id: e2.id)
 
-Item.create(exhibit_id: e1.id, name: "Oiseau (Bird)", description: "Spiky abstract sculpture in Bronze, cast in 1981", creator: "Joan Miró", country_of_origin: "USA", state_of_origin: "Texas", city_of_origin: "Houston", year_of_origin: 1968, item_code: "2000.540", image: "https://photos.app.goo.gl/x7DcpVwGzJaMtzXe7", depth: 2, width: 2, height: 3, model:"", x_pos: 0, y_pos: 0, z_pos: 0)
+Item.create(room_id: r1.id, name: "Oiseau (Bird)", description: "Spiky abstract sculpture in Bronze, cast in 1981", creator: "Joan Miró", country_of_origin: "USA", state_of_origin: "Texas", city_of_origin: "Houston", year_of_origin: 1968, item_code: "2000.540", image: "https://photos.app.goo.gl/x7DcpVwGzJaMtzXe7", depth: 2, width: 2, height: 3, model:"", x_pos: 0, y_pos: 0, z_pos: 0)
 
-Item.create(exhibit_id: e1.id, name: "Decanter", description: "Steel and Bronze", creator: "Frank Stella", country_of_origin: "USA", state_of_origin: "Texas", city_of_origin: "Houston", year_of_origin: 1987, item_code: "87.239", image: "https://photos.app.goo.gl/yeZNQCDtyL17EM3G6", depth: 2, width: 2, height: 2, model:"", x_pos: 1, y_pos: 1, z_pos: 1)
+Item.create(room_id: r2.id, name: "Decanter", description: "Steel and Bronze", creator: "Frank Stella", country_of_origin: "USA", state_of_origin: "Texas", city_of_origin: "Houston", year_of_origin: 1987, item_code: "87.239", image: "https://photos.app.goo.gl/yeZNQCDtyL17EM3G6", depth: 2, width: 2, height: 2, model:"", x_pos: 1, y_pos: 1, z_pos: 1)
 
-Item.create(exhibit_id: e1.id, name: "Conversation with the Wind", description: "Steel", creator: "Pietro Consagra", country_of_origin: "Italy", state_of_origin: "", city_of_origin: "", year_of_origin: 1962, item_code: "63.9", image: "https://photos.app.goo.gl/ehed83cabHbAQvJLA", depth: 3, width: 1, height: 3, model:"", x_pos: 1, y_pos: 0, z_pos: 2)
+Item.create(room_id: r3.id, name: "Conversation with the Wind", description: "Steel", creator: "Pietro Consagra", country_of_origin: "Italy", state_of_origin: "", city_of_origin: "", year_of_origin: 1962, item_code: "63.9", image: "https://photos.app.goo.gl/ehed83cabHbAQvJLA", depth: 3, width: 1, height: 3, model:"", x_pos: 1, y_pos: 0, z_pos: 2)
 
-Item.create(exhibit_id: e1.id, name: "Magari", description: "Welded Steel", creator: "Mark Di Suvero", country_of_origin: "USA", state_of_origin: "Texas", city_of_origin: "Houston", year_of_origin: 1977, item_code: "81.39", image: "https://photos.app.goo.gl/UEHzrEWnJJ7y8btA8", depth: 2, width: 2, height: 3, model:"", x_pos: 2, y_pos: 0, z_pos: 1)
+Item.create(room_id: r4.id, name: "Magari", description: "Welded Steel", creator: "Mark Di Suvero", country_of_origin: "USA", state_of_origin: "Texas", city_of_origin: "Houston", year_of_origin: 1977, item_code: "81.39", image: "https://photos.app.goo.gl/UEHzrEWnJJ7y8btA8", depth: 2, width: 2, height: 3, model:"", x_pos: 2, y_pos: 0, z_pos: 1)
 
-Item.create(exhibit_id: e2.id, name: "Sea Otters", description: "Agate and Smoky Quartz", creator: "Gerd Dreher", country_of_origin: "Brazil", state_of_origin: "Minas Gerais", city_of_origin: "", year_of_origin: 0, item_code: "50.2015.47", image: "https://photos.app.goo.gl/tn3LcN62SYv9EWa67", depth: 1, width: 1, height: 1, model:"", x_pos: 0, y_pos: 0, z_pos: 0)
+Item.create(room_id: r5.id, name: "Sea Otters", description: "Agate and Smoky Quartz", creator: "Gerd Dreher", country_of_origin: "Brazil", state_of_origin: "Minas Gerais", city_of_origin: "", year_of_origin: 0, item_code: "50.2015.47", image: "https://photos.app.goo.gl/tn3LcN62SYv9EWa67", depth: 1, width: 1, height: 1, model:"", x_pos: 0, y_pos: 0, z_pos: 0)

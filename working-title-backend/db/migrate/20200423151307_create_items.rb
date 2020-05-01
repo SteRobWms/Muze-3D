@@ -1,7 +1,7 @@
 class CreateItems < ActiveRecord::Migration[6.0]
   def change
     create_table :items do |t|
-      t.belongs_to :exhibit, null: false, foreign_key: true
+      t.belongs_to :room, null: false, foreign_key: true
       t.string :name
       t.string :description
       t.string :creator
