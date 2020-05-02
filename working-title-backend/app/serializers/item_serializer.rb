@@ -1,11 +1,11 @@
 class ItemSerializer < ActiveModel::Serializer
-    attributes :id, :item_code, :name, :description, :creator, :country_of_origin, :state_of_origin, :city_of_origin, :year_of_origin, :image, :depth, :width, :height, :model, :x_pos, :y_pos, :z_pos, :exhibit, :museum, :room
+    attributes :id, :item_code, :name, :description, :creator, :country_of_origin, :state_of_origin, :city_of_origin, :year_of_origin, :image, :depth, :width, :height, :model, :x_pos, :y_pos, :z_pos, :creating_user, :exhibit, :museum, :room
 
-        def creator
-            creator = User.find(Museum.find(Exhibit.find(Room.find(self.object.room_id).exhibit_id).museum_id).user_id)
+        def creating_user
+            creating_user = User.find(Museum.find(Exhibit.find(Room.find(self.object.room_id).exhibit_id).museum_id).user_id)
             {
-                id: creator.id,
-                username: creator.username
+                id: creating_user.id,
+                username: creating_user.username
             }
         end
 

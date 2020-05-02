@@ -1,10 +1,9 @@
 import React from 'react'
-import Item from '../Components/Item'
+import ItemTile from '../Components/ItemTile'
 
 export default class ItemContainer extends React.Component {
 
     state = {
-
     }
 
     getItems = () => {
@@ -22,15 +21,19 @@ export default class ItemContainer extends React.Component {
         this.props.loggedIn(this.props.history)
         this.getItems()
     }
+
     render() {
         return (
             <div>
-                <ul>
-                    {this.state.displayItems
-                        // Replace Item with ItemThumb
-                        ? this.state.displayItems.map((item, idx) => <Item key={idx} item={item} />)
-                        : 'loading...'}
-                </ul>
+                {this.state.displayItems
+                    ? this.state.displayItems.map((item, idx) => {
+                        return (
+                            <a className="list" href={`http://localhost:3001/items/${item.id}`} key={idx}>
+                                <ItemTile {...item} />
+                            </a>
+                        )
+                    })
+                    : 'loading...'}
             </div>
         )
     }

@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :bio, :museums, :favorite_museums, :favorite_exhibits
+  attributes :id, :username, :bio, :museums, :favorite_museums, :exhibits, :favorite_exhibits
 
   def museums
     self.object.museums.map do |museum| {
@@ -38,6 +38,7 @@ class UserSerializer < ActiveModel::Serializer
                 id: User.find(museum.user_id).id
             },
             name: museum.name,
+            id: museum.id,
             city: museum.city,
             state: museum.state,
             country: museum.country,
@@ -48,29 +49,42 @@ class UserSerializer < ActiveModel::Serializer
             }
         end
     end
-#   def favorite_exhibits
-#     self.object.favorite_exhibits.map do |fav_exhibit|
-#         exhibit = Exhibit.find(fav_exhibit.exhibit_id)
-#         {
-#             owner: {
-#                 username: User.find(exhibit.user_id).username,
-#                 id: User.find(exhibit.user_id).id
-#             },
-#             name: exhibit.name,
-#             city: exhibit.city,
-#             state: exhibit.state,
-#             country: exhibit.country,
-#             description: exhibit.description,
-#             category: exhibit.category,
-#             favorite_count: exhibit.favorite_exhibits.count
-#             }
-#         end
-#     end
+
+    def exhibits
+        self.object.exhibits.map do |exhibit|
+            {
+                id: exhibit.id,
+                name: exhibit.name,
+                background_image: exhibit.background_image,
+                description: exhibit.description,
+                museum: {
+                    name: Museum.find(exhibit.museum_id).name,
+                    city: Museum.find(exhibit.museum_id).city,
+                    country: Museum.find(exhibit.museum_id).country
+                }
+            }    
+        end 
+    end
+
+    def favorite_exhibits
+        self.object.favorite_exhibits.map do |fav_exhibit|
+            exhibit = Exhibit.find(fav_exhibit.exhibit_id)
+            museum = Museum.find(exhibit.museum_id)
+            {
+                owner: {
+                    username: User.find(fav_exhibit.user_id).username,
+                    id: fav_exhibit.user_id
+                },
+                name: exhibit.name,
+                background_image: exhibit.background_image,
+                museum: {
+                    name: museum.name,
+                    city: museum.city,
+                    country: museum.country
+                },
+                description: exhibit.description,
+                favorite_count: exhibit.favorite_exhibits.count
+                }
+            end
+        end
 end
-# t.integer "museum_id", null: false
-# t.string "name"
-# t.string "description"
-# t.integer "depth"
-# t.integer "width"
-# t.integer "height"
-# t.string "background_image"

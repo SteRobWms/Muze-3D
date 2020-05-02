@@ -1,5 +1,5 @@
 import React from 'react'
-import Exhibit from '../Components/Exhibit'
+import ExhibitTile from '../Components/ExhibitTile'
 
 export default class ExhibitContainer extends React.Component {
 
@@ -25,12 +25,15 @@ export default class ExhibitContainer extends React.Component {
     render() {
         return (
             <div>
-                <ul>
-                    {this.state.displayExhibits
-                        //replace <Exhibit> with <ExhibitThumb>
-                        ? this.state.displayExhibits.map((exhibit, idx) => <Exhibit key={idx} exhibit={exhibit} />)
-                        : 'loading...'}
-                </ul>
+                {this.state.displayExhibits
+                    ? this.state.displayExhibits.map((exhibit, idx) => {
+                        return (
+                            <a classname="list" href={`http://localhost:3001/exhibits/${exhibit.id}`} key={idx} >
+                                <ExhibitTile {...exhibit} />
+                            </a>
+                        )
+                    })
+                    : 'loading...'}
             </div >
         )
     }

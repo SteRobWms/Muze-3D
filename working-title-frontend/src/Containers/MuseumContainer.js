@@ -27,20 +27,14 @@ export default class MuseumContainer extends React.Component {
         return (
             <div>
                 {this.state.displayMuseums
-                    ? this.state.displayMuseums.map((museum) => {
+                    ? this.state.displayMuseums.map((museum, idx) => {
                         return (
-                            <a className="list" href={`http://localhost:3001/museums/${museum.id}`}>
+                            <a className="list" href={`http://localhost:3001/museums/${museum.id}`} key={idx}>
                                 <MuseumTile {...museum} />
-                                {/* <div>
-                                    Name: {museum.name}<br />
-                                    Category: {museum.category}<br />
-                                    City: {museum.city}
-                                </div> */}
                             </a>
                         )
                     })
                     : 'loading...'}
-                {/* <button onClick={() => this.testForLoggedIn()}>O</button> */}
             </div >
         )
     }
