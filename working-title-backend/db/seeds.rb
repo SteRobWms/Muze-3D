@@ -12,8 +12,8 @@ u3 = User.create(username: "paul", password_digest: BCrypt::Password.create('gue
 u4 = User.create(username: "caleb", password_digest: BCrypt::Password.create('guest'), bio: "I don't use a mouse, and I watch Paul's beard grow")
 
 m1 = Museum.create(user_id: u1.id, name: "Cullen Sculpture Garden", description: 
-"A collection of original and replica sculptures connected to the Glassell School of Art, placed in a park environment", country: "USA", state: "Texas", city: "Houston", category: "Art")
-m2 = Museum.create(user_id: u1.id, name: "Houston Museum of Natural Sciences", description: "Houston's oldest Science Museum, host of a famous Paleontology Hall, gemology exhibit, planetarium, and indoor butterfly center", country: "USA", state: "Texas", city: "Houston", category: "Science")
+"A collection of original and replica sculptures connected to the Glassell School of Art, placed in a park environment", country: "USA", state: "Texas", city: "Houston", category: "Art", background_image: "https://picsum.photos/200")
+m2 = Museum.create(user_id: u1.id, name: "Houston Museum of Natural Sciences", description: "Houston's oldest Science Museum, host of a famous Paleontology Hall, gemology exhibit, planetarium, and indoor butterfly center", country: "USA", state: "Texas", city: "Houston", category: "Science", background_image: "https://picsum.photos/600")
 
 # Test case for museums with nothing but a name, no exhibits and no items.
 m3 = Museum.create(user_id: u4.id, name: "Nihilism Museum")

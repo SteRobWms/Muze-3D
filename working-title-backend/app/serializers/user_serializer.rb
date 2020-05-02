@@ -3,12 +3,14 @@ class UserSerializer < ActiveModel::Serializer
 
   def museums
     self.object.museums.map do |museum| {
+        id: museum.id,
         name: museum.name,
         city: museum.city,
         state: museum.state,
         country: museum.country,
         description: museum.description,
         category: museum.category,
+        background_image: museum.background_image,
         favorited_by: museum.favorite_museums.map do |fav|
             fav.user.username
             end,
@@ -20,16 +22,10 @@ class UserSerializer < ActiveModel::Serializer
             width: exhibit.width,
             height: exhibit.height,
             background_image: exhibit.background_image,
-            rooms: exhibit.rooms.map do |room| {
-                id: room.id,
-                items: room.items.map do |item| {
-                    name: item.name
-                }
-            end
-            }
-        end
+            rooms: exhibit.rooms.map{|room| room.id},
+            items: exhibit.items
         }
-    end
+      end
     }
         end
     end
@@ -47,7 +43,8 @@ class UserSerializer < ActiveModel::Serializer
             country: museum.country,
             description: museum.description,
             category: museum.category,
-            favorite_count: museum.favorite_museums.count
+            favorite_count: museum.favorite_museums.count,
+            background_image: museum.background_image
             }
         end
     end

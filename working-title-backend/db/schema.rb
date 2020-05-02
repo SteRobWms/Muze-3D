@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_164124) do
     t.string "state"
     t.string "city"
     t.string "category"
+    t.string "background_image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_museums_on_user_id"
