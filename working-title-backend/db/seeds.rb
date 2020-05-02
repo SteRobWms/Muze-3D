@@ -29,7 +29,7 @@ FavoriteExhibit.create(user_id: u2.id, exhibit_id: e3.id)
 FavoriteExhibit.create(user_id: u2.id, exhibit_id: e2.id)
 FavoriteExhibit.create(user_id: u1.id, exhibit_id: e3.id)
 FavoriteExhibit.create(user_id: u3.id, exhibit_id: e3.id)
-FavoriteExhibit.create(user_id: u3.id, exhibit_id: e3.id)
+FavoriteExhibit.create(user_id: u4.id, exhibit_id: e3.id)
 
 FavoriteMuseum.create(user_id: u1.id, museum_id: m2.id)
 FavoriteMuseum.create(user_id: u2.id, museum_id: m2.id)
