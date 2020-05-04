@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_164124) do
     t.integer "width"
     t.integer "height"
     t.string "background_image"
+    t.string "img_prefix"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["museum_id"], name: "index_exhibits_on_museum_id"
@@ -51,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_164124) do
     t.string "country_of_origin"
     t.string "state_of_origin"
     t.string "city_of_origin"
-    t.integer "year_of_origin"
+    t.string "year_of_origin"
     t.string "image"
     t.integer "depth"
     t.integer "width"
@@ -81,6 +82,8 @@ ActiveRecord::Schema.define(version: 2020_05_01_164124) do
   end
 
   create_table "rooms", force: :cascade do |t|
+    t.string "background_image"
+    t.string "img_prefix"
     t.integer "exhibit_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -8,7 +8,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string :country_of_origin
       t.string :state_of_origin
       t.string :city_of_origin
-      t.integer :year_of_origin
+      t.string :year_of_origin
       t.string :image
       t.integer :depth
       t.integer :width
