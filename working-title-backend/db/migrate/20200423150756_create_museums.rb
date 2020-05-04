@@ -8,7 +8,7 @@ class CreateMuseums < ActiveRecord::Migration[6.0]
       t.string :state
       t.string :city
       t.string :category
-      t.string :background_image
+    #   t.string :background_image
 
       t.timestamps
     end
