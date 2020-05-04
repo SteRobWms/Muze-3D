@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     before_action :logged_in?, only: [:profile]
-    before_action :set_current_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_current_user, only: [:show, :destroy]
     
     def index
         @users = User.all 
@@ -36,6 +36,9 @@ class UsersController < ApplicationController
     end
 
     def update
+        setUser
+        # byebug
+        @user.update(user_params)
         render json: @user
     end
 

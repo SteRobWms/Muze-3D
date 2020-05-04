@@ -7,7 +7,7 @@ class MuseumsController < ApplicationController
     end
 
     def show
-        @user = User.find(@museum.user_id).username
+        # setUser
         render json: @museum
     end
 

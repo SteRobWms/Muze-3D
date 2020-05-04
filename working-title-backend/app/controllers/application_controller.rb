@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    include Rails.application.routes.url_helpers
     skip_before_action :verify_authenticity_token
     # before_action :logsomething
     # before_action :logged_in?
