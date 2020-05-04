@@ -1,4 +1,5 @@
 class Museum < ApplicationRecord
+    
   belongs_to :user
   has_many :exhibits
   has_many :items, through: :exhibits
