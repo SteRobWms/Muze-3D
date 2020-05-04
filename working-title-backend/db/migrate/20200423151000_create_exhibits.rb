@@ -8,6 +8,7 @@ class CreateExhibits < ActiveRecord::Migration[6.0]
       t.integer :width
       t.integer :height
       t.string :background_image
+      t.string :img_prefix
 
       t.timestamps
     end

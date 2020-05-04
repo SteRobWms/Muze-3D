@@ -1,36 +1,41 @@
-import React, { useState, useEffect } from 'react'
-import Museum from '../Components/Museum'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import MuseumTile from '../Components/MuseumTile'
+// import Museum from '../Components/Museum'
 
-export default function MuseumContainer() {
+export default class MuseumContainer extends React.Component {
 
-    const [museums, setMuseums] = useState([])
-    const [displayMuseums, setDisplayMuseums] = useState([])
+    state = {
+    }
 
-    useEffect(() => {
+    getMuseums = () => {
         fetch('http://localhost:3000/museums')
             .then(response => response.json())
             .then(museums => {
-                setMuseums(museums)
-                setDisplayMuseums(museums)
-            })
-    })
-
-    return (
-        <div>
-            {displayMuseums
-                ? displayMuseums.map((museum, idx) => {
-                    return (
-                        <a style={{ margin: "10px", "borderRadius": "10px", width: "300px", display: "block", color: "black", border: "solid black 1px", backgroundColor: "skyblue" }} className="list" href={`http://localhost:3001/museums/${idx + 1}`}>
-                            <div>
-                                Name: {museum.name}<br />
-                                Category: {museum.category}<br />
-                                City: {museum.city}
-                            </div>
-                        </a>
-                    )
+                this.setState({
+                    museums,
+                    displayMuseums: museums
                 })
-                : 'loading...'}
-        </div>
-    )
+            })
+    }
+
+    componentDidMount() {
+        this.props.loggedIn(this.props.history)
+        this.getMuseums()
+    }
+
+    render() {
+        return (
+            <div>
+                {this.state.displayMuseums
+                    ? this.state.displayMuseums.map((museum, idx) => {
+                        return (
+                            <a className="list" href={`http://localhost:3001/museums/${museum.id}`} key={idx}>
+                                <MuseumTile {...museum} />
+                            </a>
+                        )
+                    })
+                    : 'loading...'}
+            </div >
+        )
+    }
 }

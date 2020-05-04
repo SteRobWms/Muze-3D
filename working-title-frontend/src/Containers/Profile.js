@@ -1,61 +1,59 @@
 import React from 'react'
+import MuseumTile from '../Components/MuseumTile'
+import ExhibitTile from '../Components/ExhibitTile'
 
 export default class Profile extends React.Component {
 
-    state = {
-        currentDisplay: "",
-        userData: [],
-        currentUser: 1,
-        currentUserData: ""
-    }
-
-    handleClick = (status) => {
-        this.setState({ currentDisplay: status })
-    }
-
-    componentDidMount() {
-        fetch('http://localhost:3000/users')
+    getUserInfo = () => {
+        fetch(`http://localhost:3000/users/${localStorage.user}`)
             .then(response => response.json())
-            .then(userData => {
-                this.setState({
-                    userData
-                })
-                this.setCurrentUserData(userData, this.state.currentUser)
+            .then(user => {
+                if (user.error) {
+                    return console.log(user.error, ": Here's a muffin.")
+                }
+                else { this.setState({ user }) }
             })
     }
 
-    setCurrentUserData = (userData, id) => {
-        this.setState({ currentUserData: userData[id] })
+    componentDidMount() {
+        this.props.loggedIn(this.props.history)
+        this.getUserInfo()
     }
 
     render() {
-        const currentDisplay = this.state.currentDisplay
-        let display
-        switch (currentDisplay) {
+        if (this.state) {
+            return (
+                <div>
+                    <h1>Username: {this.state.user.username}</h1>
 
-            default:
-                display = <div>This is the default div. Boop</div>
+                    <h2>Bio: {this.state.user.bio}</h2>
+
+
+                    <h2>Museums:</h2> {this.state.user.museums.length > 0
+                        ? this.state.user.museums.map((museum, idx) => <MuseumTile key={idx} {...museum} />)
+                        : <h4>"You haven't created any museums yet!"</h4>}
+
+
+                    <h2>Favorite Museums:</h2> {this.state.user.favorite_museums
+                        ? this.state.user.favorite_museums.map((museum, idx) => <MuseumTile key={idx} {...museum} />)
+                        : <h4>"You haven't liked any museums yet!"</h4>}
+
+                    <h2>Exhibits:</h2> {this.state.user.exhibits.length > 0
+                        ? this.state.user.exhibits.map((exhibit, idx) => <ExhibitTile key={idx} {...exhibit} />)
+                        : <h4>"You haven't created any exhibits yet!"</h4>}
+
+
+                    <h2>Favorite exhibits:</h2> {this.state.user.favorite_exhibits
+                        ? this.state.user.favorite_exhibits.map((exhibit, idx) => <ExhibitTile key={idx} {...exhibit} />)
+                        : <h4>"You haven't liked any exhibits yet!"</h4>}
+                </div>
+            )
         }
-
-        let userData = this.state.currentUserData
-
-        return (
-            <div>
-                {display}
-                <li>Username: {userData.username}</li>
-                <li>Password: {userData.password_digest}</li>
-                <li>Bio: {userData.bio}</li>
-                <li>Museums: {userData.museums
-                    ? userData.museums.map(museum => <li>{museum.name}</li>)
-                    : "You haven't created any museums yet!"}
-                </li>
-                <li>Favorite Museums: {userData.favorite_museums
-                    ? userData.favorite_museums.map(museum => <li>{museum.name}</li>)
-                    : "You haven't liked any museums yet!"}
-                </li>
-                <img src="https://lh3.googleusercontent.com/e4o2aXJCbJQ1NkA6zLl8MTfwLFujGJ81kOBT2PQK4nbV8RnI2Cq-Jrw0QzBcsnYMk5ujoD1J45k2xHV7dj6n5gMXZ-jJYfs08CDinf5YPFhchcKALgNVLitOR7bcYtg8lyBM8rIivg=w473-h630-no" alt="link broken" />
-            </div>
-        )
+        else {
+            return (
+                <h2>Loading...</h2>
+            )
+        }
     }
 
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_151531) do
+ActiveRecord::Schema.define(version: 2020_05_01_164124) do
 
   create_table "exhibits", force: :cascade do |t|
     t.integer "museum_id", null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_151531) do
     t.integer "width"
     t.integer "height"
     t.string "background_image"
+    t.string "img_prefix"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["museum_id"], name: "index_exhibits_on_museum_id"
@@ -44,14 +45,14 @@ ActiveRecord::Schema.define(version: 2020_04_23_151531) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "exhibit_id", null: false
+    t.integer "room_id", null: false
     t.string "name"
     t.string "description"
     t.string "creator"
     t.string "country_of_origin"
     t.string "state_of_origin"
     t.string "city_of_origin"
-    t.integer "year_of_origin"
+    t.string "year_of_origin"
     t.string "image"
     t.integer "depth"
     t.integer "width"
@@ -63,7 +64,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_151531) do
     t.string "item_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["exhibit_id"], name: "index_items_on_exhibit_id"
+    t.index ["room_id"], name: "index_items_on_room_id"
   end
 
   create_table "museums", force: :cascade do |t|
@@ -74,9 +75,19 @@ ActiveRecord::Schema.define(version: 2020_04_23_151531) do
     t.string "state"
     t.string "city"
     t.string "category"
+    t.string "background_image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_museums_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "background_image"
+    t.string "img_prefix"
+    t.integer "exhibit_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exhibit_id"], name: "index_rooms_on_exhibit_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -92,6 +103,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_151531) do
   add_foreign_key "favorite_exhibits", "users"
   add_foreign_key "favorite_museums", "museums"
   add_foreign_key "favorite_museums", "users"
-  add_foreign_key "items", "exhibits"
+  add_foreign_key "items", "rooms"
   add_foreign_key "museums", "users"
+  add_foreign_key "rooms", "exhibits"
 end

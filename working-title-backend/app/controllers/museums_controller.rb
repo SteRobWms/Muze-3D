@@ -1,13 +1,13 @@
 class MuseumsController < ApplicationController
-
     before_action :set_current_museum, only: [:show, :edit, :update, :destroy]
 
     def index
-        @museums = Museum.all 
+        @museums = Museum.all
         render json: @museums
     end
 
     def show
+        @user = User.find(@museum.user_id).username
         render json: @museum
     end
 

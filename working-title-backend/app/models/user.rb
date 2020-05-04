@@ -6,7 +6,7 @@ class User < ApplicationRecord
     has_many :favorite_museums
     # has_many :museums, through: :favorite_museums
     has_many :favorite_exhibits
-    has_many :exhibits, through: :favorite_exhibits
+    # has_many :exhibits, through: :favorite_exhibits
 
     validates :username, uniqueness: true
 end
