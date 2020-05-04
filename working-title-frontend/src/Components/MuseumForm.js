@@ -8,7 +8,9 @@ const MuseumForm = props => {
         const formData = new FormData(event.target)
         submitMuseum(formData)
             // ex had setPost and (data.post)
-            .then(data => props.setMuseum(data.museum))
+            // .then(data => props.setMuseum(data.museum))
+            // .then(response => response.json())
+            .then(console.log)
             .catch(console.error);
     }
 
