@@ -15,6 +15,10 @@ class MuseumsController < ApplicationController
     end
 
     def create
+        byebug
+        setUser
+        params[:user_id] = @user.id
+        byebug
         @museum = Museum.create(museum_params)
         render json: @museum
     end
@@ -34,7 +38,7 @@ class MuseumsController < ApplicationController
     private
 
     def museum_params
-        params.require(:museum).permit(:name, :user_id)
+        params.permit(:name, :user_id, :description, :country, :state, :city, :category, :background_image)
     end
 
     def set_current_museum

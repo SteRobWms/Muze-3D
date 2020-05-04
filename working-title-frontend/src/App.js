@@ -9,6 +9,7 @@ import ItemContainer from './Containers/ItemContainer';
 import Login from './Components/Login';
 import Museum from './Components/Museum';
 import MuseumContainer from './Containers/MuseumContainer';
+import MuseumForm from './Components/MuseumForm';
 import NavBar from './Containers/NavBar';
 import SignUp from './Components/SignUp';
 import Profile from './Containers/Profile';
@@ -91,7 +92,7 @@ export default class App extends React.Component {
                         <Route exact path="/login" render={(routerProps) => <Login {...routerProps} setUserLocalStorage={this.setUserLocalStorage} setUserState={this.setUserState} loggedIn={this.loggedIn} />} />
 
                         <Route exact path="/museums" render={(routerProps) => <MuseumContainer {...routerProps} loggedIn={this.loggedIn} />} />
-                        <Route exact path="/museums/new" render={(routerProps) => <div {...routerProps} >New Museum Form</div>} />
+                        <Route exact path="/museums/new" render={(routerProps) => <MuseumForm {...routerProps} loggedIn={this.loggedIn} />} />
                         <Route exact path="/museums/:id/edit" render={(routerProps) => <div {...routerProps} >Edit Museum Form</div>} />
                         <Route exact path="/museums/:id" render={(routerProps) => <Museum {...routerProps} loggedIn={this.loggedIn} />} />
 
