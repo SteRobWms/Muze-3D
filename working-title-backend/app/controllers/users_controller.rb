@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     before_action :logged_in?, only: [:profile]
-    before_action :set_current_user, only: [:show, :destroy]
+    # before_action :set_current_user, only: [:show, :destroy]
     
     def index
         @users = User.all 
@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     end
 
     def show
+        @user = User.find(params[:id])
         render json: @user
     end
 

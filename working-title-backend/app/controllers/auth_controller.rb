@@ -6,7 +6,8 @@ class AuthController < ApplicationController
 
         # bcrypt .authenticate method
         if user && user.authenticate(params[:password])
-            render json: {user: UserSerializer.new(user), token: encode_token({user_id: user.id})}
+            # render json: {user: UserSerializer.new(user), token: encode_token({user_id: user.id})}
+            render json: {user: user, token: encode_token({user_id: user.id})}
         else
             render json: {error: "Invalid Username or Password"}
         end

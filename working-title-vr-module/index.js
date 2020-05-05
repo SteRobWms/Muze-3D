@@ -1,6 +1,8 @@
 import React from 'react';
 import {
     AppRegistry,
+    Environment,
+    Image,
     NativeModules,
     StyleSheet,
     Text,
@@ -34,6 +36,33 @@ export class ButtonToSafety extends React.Component {
     }
 }
 
+export class TestPanel extends React.Component {
+
+    state = {
+        museum: {
+            background_image: "https://picsum.photos/300"
+        }
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:3000/museums/1")
+            .then(response => response.json())
+            .then(museum => {
+                this.setState({ ...this.state, museum });
+                Environment.setBackgroundImage({ uri: this.state.museum.background_image });
+            })
+
+    }
+
+    render() {
+        return (
+            <View style={styles.panel} >
+                <Image source={{ uri: this.state.museum.background_image }} />
+            </View>
+        )
+    }
+}
+
 const styles = StyleSheet.create({
     panel: {
         // Fill the entire surface
@@ -63,3 +92,4 @@ const styles = StyleSheet.create({
 
 AppRegistry.registerComponent('Clipboard', () => Clipboard);
 AppRegistry.registerComponent('ButtonToSafety', () => ButtonToSafety);
+AppRegistry.registerComponent('TestPanel', () => TestPanel);

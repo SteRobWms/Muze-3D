@@ -1,16 +1,29 @@
 class ExhibitSerializer < ActiveModel::Serializer
-  attributes :id, :creator, :name, :description, :background_image, :favorite_exhibits, :img_prefix, :rooms, :items, :museum
+  attributes :id, :creator, :name, :description, :background_image, :rooms, :items, :museum
+
+    def background_image
+        self.object.background_image.service_url
+    end
+    
+    def rooms
+        self.object.rooms.map do |room|
+            {exhibit_id: room.exhibit_id,
+            background_image: room.background_image.service_url}
+        end
+    end
+
+    def museum
+        @museum = Museum.find(self.object.museum_id)
+        {name: @museum.name,
+        category: @museum.category,
+        background_image: @museum.background_image.service_url
+        }
+    end
 
     def creator
         {
         id: Museum.find(self.object.museum_id).user_id,
         username: User.find(Museum.find(self.object.museum_id).user_id).username
-        }
-    end
-
-    def favorite_exhibits
-        {
-            lovers: self.object.favorite_exhibits.pluck(:user_id)
         }
     end
 
@@ -22,7 +35,7 @@ class ExhibitSerializer < ActiveModel::Serializer
                 description: item.description,
                 creator: item.creator,
                 year_of_origin: item.year_of_origin,
-                item_code: item.item_code,
+                item_code: item.item_code.service_url,
                 image: item.image,
                 room_id: item.room_id,
                 img_prefix: self.object.img_prefix

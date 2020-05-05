@@ -12,9 +12,12 @@ class ExhibitsController < ApplicationController
     end
 
     def new
+        setUser
     end
 
     def create
+        setUser
+        byebug
         @exhibit = Exhibit.create(exhibit_params)
         render json: @exhibit
     end
@@ -34,7 +37,7 @@ class ExhibitsController < ApplicationController
     private
 
     def exhibit_params
-        params.require(:exhibit).permit(:name, :museum_id)
+        params.permit(:name, :museum_id, :description, :background_image)
     end
 
     def set_current_exhibit

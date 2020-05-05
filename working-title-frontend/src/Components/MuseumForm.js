@@ -32,7 +32,11 @@ const MuseumForm = props => {
                 <input type="text" name="city" />
             </label><br />
             <label htmlFor="category">Category
-                <input type="select" name="category" />
+                <select name="category">
+                    <option value="">Select a Category</option>
+                    <option value="Art and Culture">Art and Culture</option>
+                    <option value="Science, Tech, and Engineering">Science, Tech, and Engineering</option>
+                </select>
             </label><br />
             <label htmlFor="background_image">Upload Image
                 <input type="file" name="background_image" accept="image/*" />
