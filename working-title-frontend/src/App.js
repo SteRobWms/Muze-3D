@@ -86,9 +86,9 @@ export default class App extends React.Component {
                         <Route exact path="/exhibits/:id" render={(routerProps) => <Exhibit {...routerProps} loggedIn={this.loggedIn} />} />
 
                         <Route exact path="/items" render={(routerProps) => <ItemContainer {...routerProps} loggedIn={this.loggedIn} />} />
-                        <Route exact path="/items/new" render={(routerProps) => <div {...routerProps}>New Item Form</div>} />
-                        <Route exact path="/items/:id/edit" render={(routerProps) => <div {...routerProps} >Edit Item Form</div>} />
-                        <Route exact path="/items/:id" render={(routerProps) => <Item {...routerProps} loggedIn={this.loggedIn} />} />
+                        <Route exact path="/exhibits/:exhibit/rooms/:room/items/new" render={(routerProps) => <div {...routerProps}>New Item Form</div>} />
+                        <Route exact path="/exhibits/:exhibit/rooms/:room/items/:item/edit" render={(routerProps) => <div {...routerProps} >Edit Item Form</div>} />
+                        <Route exact path="/exhibits/:exhibit/rooms/:room/items/:item" render={(routerProps) => <Item {...routerProps} loggedIn={this.loggedIn} />} />
 
                         <Route exact path="/login" render={(routerProps) => <Login {...routerProps} setUserLocalStorage={this.setUserLocalStorage} setUserState={this.setUserState} loggedIn={this.loggedIn} />} />
 

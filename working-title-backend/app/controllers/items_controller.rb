@@ -15,8 +15,13 @@ class ItemsController < ApplicationController
     end
 
     def create
-        @item = Item.create(item_params)
-        render json: @item
+        byebug
+        set_current_exhibit
+        set_current_room
+        byebug
+        @item = Item.create(room_id: item_params[:room])
+        byebug
+        render json: @exhibit
     end
 
     def edit
@@ -34,11 +39,18 @@ class ItemsController < ApplicationController
     private
 
     def item_params
-        params.require(:item).permit(:name, :exhibit_id)
+        params.permit(:name, :exhibit, :exhibit_id, :room, :room_id, :description)
     end
 
     def set_current_item
-        @item = Item.find(params[:id])
+        @item = Item.find(params[:item])
     end
 
+    def set_current_exhibit
+        @exhibit = Exhibit.find(params[:exhibit])
+    end
+
+    def set_current_room
+        @room = Room.find(params[:room])
+    end
 end

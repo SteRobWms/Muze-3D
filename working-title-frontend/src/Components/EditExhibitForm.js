@@ -55,30 +55,12 @@ export default class EditExhibitForm extends React.Component {
     render() {
         return (
             <div>
-                <h2>Editing Exhibit: {this.props.exhibit.name}</h2>
-                <h3>Parent Museum: {this.props.exhibit.museum.name}</h3>
-                <button onClick={() => this.props.toggleEdit()}>Cancel</button><br /><br />
-                {this.state.editMode === true
-                    ?
-                    <div>
-                        <button onClick={() => this.toggleMode()}>Add Rooms</button>
-                        <form onSubmit={(event) => { this.handleEditSubmit(event); this.props.toggleEdit() }}>
-                            <label>Change Description</label>
-                            <input name="description" type="text" placeholder={this.props.exhibit.description} />
-                            <input type="submit" value="Save Changes" />
-                        </form>
-                    </div>
-                    :
-                    <div>
-                        <button onClick={() => this.toggleMode()}>Edit Exhibit</button>
-                        <form onSubmit={(event) => { this.handleRoomSubmit(event) }}>
-                            <button onClick={() => this.addRoom}>Add Room</button>
-                            {this.state.rooms.map((room, idx) => {
-                                return (<input key={idx} type="text" value={`room${idx}`}>{`Room ${idx}`}</input>)
-                            })}<input type="submit" value="Save Rooms" />
-                        </form>
-                    </div>
-                }
+                {/* <button onClick={() => this.props.toggleEdit()}>Cancel</button><br /><br /> */}
+                <form onSubmit={(event) => { this.handleEditSubmit(event); this.props.toggleEdit() }}>
+                    <label>Change Description </label>
+                    <input name="description" type="text" placeholder={this.props.exhibit.description} />
+                    <input type="submit" value="Save Changes" />
+                </form>
             </div>
         )
     }

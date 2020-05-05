@@ -2,14 +2,24 @@ class ExhibitSerializer < ActiveModel::Serializer
   attributes :id, :creator, :name, :description, :background_image, :rooms, :museum
 
     def background_image
-        self.object.background_image.service_url
+        if self.object.background_image.attached?
+            self.object.background_image.service_url
+        else
+            ""
+        end
     end
     
     def rooms
         self.object.rooms.map do |room|
         {
+            id: room.id,
             exhibit_id: room.exhibit_id,
-            background_image: room.background_image.service_url,
+            background_image: 
+                if room.background_image.attached?
+                    room.background_image.service_url
+                else
+                    ""
+                end,
             items: 
                 room.items.map do |item| 
                 {
@@ -18,12 +28,17 @@ class ExhibitSerializer < ActiveModel::Serializer
                     name: item.name,
                     description: item.description,
                     creator: item.creator,
-                    image: item.image.service_url,
+                    image:
+                        if item.image.attached?
+                            item.image.service_url
+                        else
+                            ""
+                        end,
                     country_of_origin: item.country_of_origin,
                     state_of_origin: item.state_of_origin,
                     city_of_origin: item.city_of_origin,
                     year_of_origin: item.year_of_origin,
-                    item_code: item.item_code.service_url,
+                    item_code: item.item_code,
                     x_pos: item.x_pos,
                     y_pos: item.y_pos,
                     z_pos: item.z_pos,
