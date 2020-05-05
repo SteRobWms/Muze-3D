@@ -1,6 +1,6 @@
 class ExhibitsController < ApplicationController
 
-    before_action :set_current_exhibit, only: [:show, :edit, :update, :destroy]
+    before_action :set_current_exhibit, only: [:show, :edit, :update, :destroy, :add_rooms]
 
     def index
         @exhibits = Exhibit.all 
@@ -17,7 +17,6 @@ class ExhibitsController < ApplicationController
 
     def create
         setUser
-        byebug
         @exhibit = Exhibit.create(exhibit_params)
         render json: @exhibit
     end
@@ -25,9 +24,19 @@ class ExhibitsController < ApplicationController
     def edit
         render json: @exhibit
     end
-
+    
     def update
+        setUser
+        byebug
+        if exhibit_params[:description] != ""
+            @exhibit.description = (exhibit_params[:description])
+            @exhibit.save
+        end
         render json: @exhibit
+    end
+
+    def add_rooms
+        byebug
     end
 
     def destroy
@@ -37,7 +46,7 @@ class ExhibitsController < ApplicationController
     private
 
     def exhibit_params
-        params.permit(:name, :museum_id, :description, :background_image)
+        params.permit(:name, :museum_id, :description, :background_image, :rooms)
     end
 
     def set_current_exhibit
