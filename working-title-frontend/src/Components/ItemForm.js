@@ -20,7 +20,6 @@ export default class ItemForm extends React.Component {
             },
             body: formData
         }
-        debugger
         return fetch(`http://localhost:3000/exhibits/${exhibitId}/rooms/${roomId}/items/${this.props.id}`, config)
             .then(res => res.json());
     }
@@ -29,7 +28,11 @@ export default class ItemForm extends React.Component {
         event.preventDefault()
         const formData = new FormData(event.target)
         this.updateItem(roomId, exhibitId, formData)
-            .then(exhibit => { console.log(exhibit); this.props.setState(exhibit) })
+            .then(exhibit => {
+                console.log(exhibit);
+                this.props.updateState(exhibit);
+                this.props.changePanelToView()
+            })
             .catch(console.error);
     }
 

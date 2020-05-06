@@ -97,7 +97,12 @@ export default class Exhibit extends React.Component {
                 <div className="show">
                     <h2>Exhibit: {this.state.exhibit.name}</h2>
                     <h3>Parent Museum: {this.state.exhibit.museum.name}</h3>
-                    <div style={{ width: "200px", height: "200px", overflow: "hidden" }}><img style={{ maxWidth: "100%" }} src={this.state.exhibit.background_image} alt={this.state.name} /></div>
+                    <a href={`http://localhost:8081/index.html?exhibit=${this.state.exhibit.id}`}>
+                        <div style={{ width: "200px", height: "200px", overflow: "hidden" }}>
+                            <img style={{ maxWidth: "100%" }} src={this.state.exhibit.background_image} alt={this.state.name} />
+                        </div>
+                        <h3>View Exhibit In VR</h3>
+                    </a>
                     <h3>Description: {this.state.exhibit.description}</h3>
                     <button onClick={() => this.toggleEdit()}>{this.state.showEdit ? "Cancel Edit" : "Edit Description"}</button>
                     <button onClick={() => this.addRoom()}>Add new room</button><br /><br />

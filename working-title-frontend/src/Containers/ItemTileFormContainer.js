@@ -15,6 +15,12 @@ export default class ItemTileFormContainer extends React.Component {
         })
     }
 
+    changePanelToView = () => {
+        this.setState({
+            method: "view"
+        })
+    }
+
     uploadImage = (roomId, exhibitId, formData) => {
         const config = {
             method: "PUT",
@@ -32,7 +38,11 @@ export default class ItemTileFormContainer extends React.Component {
         event.preventDefault()
         const formData = new FormData(event.target)
         this.uploadImage(roomId, exhibitId, formData)
-            .then(exhibit => { console.log(exhibit); this.props.setState(exhibit) })
+            .then(exhibit => {
+                console.log(exhibit);
+                this.props.updateState(exhibit);
+                this.changePanelToView()
+            })
             .catch(console.error)
     }
 
@@ -78,7 +88,8 @@ export default class ItemTileFormContainer extends React.Component {
                         {this.state.method === "view"
                             ? <ItemTile {...this.props} />
                             : this.state.method === "edit"
-                                ? <ItemForm updateState={this.props.updateState} {...this.props} />
+                                ? <ItemForm updateState={this.props.updateState} {...this.props} changePanelToView={this.changePanelToView} />
+
                                 : <form onSubmit={(event) => this.handleSubmit(this.props.room_id, this.props.exhibit_id, event)}><label htmlFor="image">Upload Image
                                         <input type="file" name="image" accept="image/*" />
                                 </label><br />

@@ -62,7 +62,7 @@ class ItemsController < ApplicationController
     private
 
     def item_params
-        params.permit(:name, :room_id, :description, :image, :creator, :year_of_origin, :item_code, :country_of_origin, :state_of_origin, :city_of_origin, :width, :depth, :height, :x_pos, :y_pos, :z_pos, :exhibit_id)
+        params.permit(:name, :room_id, :description, :image, :creator, :year_of_origin, :item_code, :country_of_origin, :state_of_origin, :city_of_origin, :width, :depth, :height, :x_pos, :y_pos, :z_pos)
     end
 
     def set_current_item
