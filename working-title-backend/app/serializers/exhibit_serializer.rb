@@ -3,7 +3,9 @@ class ExhibitSerializer < ActiveModel::Serializer
 
     def background_image
         if self.object.background_image.attached?
-            self.object.background_image.service_url
+            if self.object.background_image.service_url
+                self.object.background_image.service_url
+            end
         else
             ""
         end

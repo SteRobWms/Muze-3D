@@ -46,7 +46,11 @@ class ExhibitsController < ApplicationController
 
     def delete_room
         @room = Room.find(params[:room])
-        @room.destroy
+        if @room.items.count > 0
+            return render json: {error: "You must delete this room's items first!"}
+        else
+            @room.destroy
+        end
         render json: @exhibit
     end
 

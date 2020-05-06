@@ -15,11 +15,11 @@ Rails.application.routes.draw do
     put "/exhibits/:id/editroom/:room", to: "exhibits#update_room"
     
     #custom for items becuase items need room id, and -by connection- exhibit id
-    get "/exhibits/:exhibit/rooms/:room/items/:item", to: "items#show"
-    delete "/exhibits/:exhibit/rooms/:room/items/:item", to: "items#destroy"
-    put "/exhibits/:exhibit/rooms/:room/items/:item", to: "items#update"
-    post "/exhibits/:exhibit/rooms/:room/items", to: "items#create"
-    get "/exhibits/:exhibit/rooms/:room/items", to: "items#index"
-
+    get "/exhibits/:exhibit_id/rooms/:room_id/items/:item_id", to: "items#show"
+    delete "/exhibits/:exhibit_id/rooms/:room_id/items/:item_id", to: "items#destroy"
+    put "/exhibits/:exhibit_id/rooms/:room_id/items/:item_id", to: "items#update_image"
+    patch "/exhibits/:exhibit_id/rooms/:room_id/items/:item_id", to: "items#update"
+    post "/exhibits/:exhibit_id/rooms/:room_id/items", to: "items#create"
+    get "/exhibits/:exhibit_id/rooms/:room_id/items", to: "items#index"
 
 end

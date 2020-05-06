@@ -85,7 +85,8 @@ export default class Exhibit extends React.Component {
         })
             .then(response => response.json())
             .then(data => {
-                this.setState({ exhibit: data })
+                if (data.error) { alert(data.error) }
+                else { this.setState({ exhibit: data }) }
             })
         // .then(alert("Room Deleted Successfully"))
     }
@@ -106,7 +107,7 @@ export default class Exhibit extends React.Component {
                             return (
                                 // <h4>Room {room.id}</h4>
                                 // <a href={`http://localhost:3001/rooms/${room.id}`} key={idx}>
-                                <RoomTile {...room} deleteRoom={this.deleteRoom} handleUpdateRoom={this.handleUpdateRoom} addItem={this.addItem} />
+                                <RoomTile {...room} deleteRoom={this.deleteRoom} handleUpdateRoom={this.handleUpdateRoom} addItem={this.addItem} updateState={this.updateState} />
                                 // </a>
                             )
                         })

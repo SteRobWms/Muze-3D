@@ -1,6 +1,4 @@
 import React from 'react'
-import ItemTile from './ItemTile'
-import ItemForm from './ItemForm'
 import ITFC from '../Containers/ItemTileFormContainer'
 
 export default class RoomTile extends React.Component {
@@ -44,7 +42,7 @@ export default class RoomTile extends React.Component {
                     {this.props.items && this.props.items.length > 0
                         ? this.props.items.map((item, idx) => {
                             return (
-                                <ITFC key={idx} {...item} roomId={this.roomId} />
+                                <ITFC key={idx} {...item} roomId={this.roomId} exhibit_id={this.props.exhibit_id} updateState={this.props.updateState} />
                                 // {this.state.showItemForm === false
                                 //     ? <ItemTile key={idx} {...item} roomId={this.roomId} />
                                 //     : <ItemForm key={idx} {...item} roomId={this.roomId} />
