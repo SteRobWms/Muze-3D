@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action :logged_in?, only: [:profile]
+    # before_action :logged_in?, only: [:profile, :show]
     # before_action :set_current_user, only: [:show, :destroy]
     
     def index
@@ -8,9 +8,9 @@ class UsersController < ApplicationController
         render json: @users
     end
 
-    def profile
-        render json: @user
-    end
+    # def profile
+    #     render json: @user
+    # end
 
     def show
         @user = User.find(params[:id])

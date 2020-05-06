@@ -13,12 +13,7 @@ class MuseumSerializer < ActiveModel::Serializer
     # end
 
     def background_image
-        # first_created = Museum.first.created_at
-        # if (self.object.created_at - first_created > 60000)
-        #     self.object.get_image_url()
-        # else
-            self.object.background_image.service_url
-        # end
+        self.object.background_image.service_url ? self.object.background_image.service_url : "Please update image"
     end
     
     def creator
@@ -48,7 +43,7 @@ class MuseumSerializer < ActiveModel::Serializer
                 name: exhibit.name,
                 id: exhibit.id,
                 description: exhibit.description,
-                background_image: exhibit.background_image.service_url
+                background_image: exhibit.background_image.service_url ? exhibit.background_image.service_url : "update image"
             }
         end
     end

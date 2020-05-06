@@ -10,18 +10,23 @@ class UserSerializer < ActiveModel::Serializer
         country: museum.country,
         description: museum.description,
         category: museum.category,
-        background_image: museum.background_image.service_url,
-        exhibits: museum.exhibits.map do |exhibit| {
-            name: exhibit.name,
-            description: exhibit.description,
-            depth: exhibit.depth,
-            width: exhibit.width,
-            height: exhibit.height,
-            background_image: exhibit.background_image.service_url,
-            rooms: exhibit.rooms.map{|room| room.id},
-            items: exhibit.items
-            }
-            end
+        background_image: 
+            # (if (museum.background_image.connected? & museum.background_image.service_url)
+                museum.background_image.service_url,
+            # else 
+                # "Update Image"
+            # end),
+        # exhibits: museum.exhibits.map do |exhibit| {
+        #     name: exhibit.name,
+        #     description: exhibit.description,
+        #     depth: exhibit.depth,
+        #     width: exhibit.width,
+        #     height: exhibit.height,
+        #     background_image: exhibit.background_image.service_url,
+        #     rooms: exhibit.rooms.map{|room| room.id},
+        #     items: exhibit.items
+        #     }
+        #     end
         }
         end
     end
@@ -41,5 +46,4 @@ class UserSerializer < ActiveModel::Serializer
             }    
         end 
     end
-
 end

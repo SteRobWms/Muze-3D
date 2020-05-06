@@ -25,7 +25,7 @@ export default class Museum extends React.Component {
                     <h3>State: {this.state.museum.state}</h3>
                     <h3>Country: {this.state.museum.country}</h3>
                     <h3>Category: {this.state.museum.category}</h3>
-                    {this.state.museum.exhibit_count > 0
+                    {this.state.museum.exhibits.length > 0
                         ? this.state.museum.exhibits.map((exhibit, idx) => {
                             let museum = { city: this.state.museum.city, country: this.state.museum.country }
                             return (
