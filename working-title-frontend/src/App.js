@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Exhibit from './Components/Exhibit';
 import ExhibitContainer from './Containers/ExhibitContainer';
+import ExhibitForm from './Components/ExhibitForm';
 import Home from './Containers/Home';
 import Item from './Components/Item'
 import ItemContainer from './Containers/ItemContainer';
@@ -33,6 +34,11 @@ export default class App extends React.Component {
             }
         })
     }
+
+    redirectTo = (history, extension) => {
+        history.push(extension)
+    }
+
     loggedIn = (history) => {
         fetch("http://localhost:3000/loggedin", {
             method: "GET",
@@ -80,19 +86,19 @@ export default class App extends React.Component {
                     <Switch>
                         <Route exact path="/" render={(routerProps) => <Home {...routerProps} />} />
                         <Route exact path="/exhibits" render={(routerProps) => <ExhibitContainer {...routerProps} loggedIn={this.loggedIn} />} />
-                        <Route exact path="/exhibits/new" render={(routerProps) => <div {...routerProps} >New Exhibit Form</div>} />
+                        <Route exact path="/exhibits/new" render={(routerProps) => <ExhibitForm {...routerProps} loggedIn={this.loggedIn} />} />
                         <Route exact path="/exhibits/:id/edit" render={(routerProps) => <div {...routerProps} >Edit Exhibit Form</div>} />
                         <Route exact path="/exhibits/:id" render={(routerProps) => <Exhibit {...routerProps} loggedIn={this.loggedIn} />} />
 
                         <Route exact path="/items" render={(routerProps) => <ItemContainer {...routerProps} loggedIn={this.loggedIn} />} />
-                        <Route exact path="/items/new" render={(routerProps) => <div {...routerProps}>New Item Form</div>} />
-                        <Route exact path="/items/:id/edit" render={(routerProps) => <div {...routerProps} >Edit Item Form</div>} />
-                        <Route exact path="/items/:id" render={(routerProps) => <Item {...routerProps} loggedIn={this.loggedIn} />} />
+                        <Route exact path="/exhibits/:exhibit/rooms/:room/items/new" render={(routerProps) => <div {...routerProps}>New Item Form</div>} />
+                        <Route exact path="/exhibits/:exhibit/rooms/:room/items/:item/edit" render={(routerProps) => <div {...routerProps} >Edit Item Form</div>} />
+                        <Route exact path="/exhibits/:exhibit/rooms/:room/items/:item" render={(routerProps) => <Item {...routerProps} loggedIn={this.loggedIn} />} />
 
                         <Route exact path="/login" render={(routerProps) => <Login {...routerProps} setUserLocalStorage={this.setUserLocalStorage} setUserState={this.setUserState} loggedIn={this.loggedIn} />} />
 
                         <Route exact path="/museums" render={(routerProps) => <MuseumContainer {...routerProps} loggedIn={this.loggedIn} />} />
-                        <Route exact path="/museums/new" render={(routerProps) => <MuseumForm {...routerProps} loggedIn={this.loggedIn} />} />
+                        <Route exact path="/museums/new" render={(routerProps) => <MuseumForm {...routerProps} loggedIn={this.loggedIn} redirectTo={this.redirectTo} />} />
                         <Route exact path="/museums/:id/edit" render={(routerProps) => <div {...routerProps} >Edit Museum Form</div>} />
                         <Route exact path="/museums/:id" render={(routerProps) => <Museum {...routerProps} loggedIn={this.loggedIn} />} />
 

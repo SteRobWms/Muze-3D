@@ -1,3 +1,5 @@
 class Item < ApplicationRecord
-  belongs_to :room
+    has_one_attached :image
+    
+    belongs_to :room
 end

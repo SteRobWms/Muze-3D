@@ -1,4 +1,6 @@
 class Room < ApplicationRecord
-  belongs_to :exhibit
-  has_many :items
+    has_one_attached :background_image
+    
+    belongs_to :exhibit
+    has_many :items
 end

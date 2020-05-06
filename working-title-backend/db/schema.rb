@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_142850) do
 
   create_table "museums", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.string "background_image"
     t.string "name"
     t.string "description"
     t.string "country"

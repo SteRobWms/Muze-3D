@@ -11,11 +11,13 @@ class ApplicationController < ActionController::Base
 
     def logged_in?
         headers = request.headers["Authorization"]
+        # byebug
         token = headers.split(" ")[1]
         begin
             user_id = JWT.decode(token, "Here-Is-Your-Easter-Egg-You-1337-H4X0R")[0]["user_id"]
             @user = User.find(user_id)
-            render json: @user
+            # byebug
+            render json: {status: "success"}, code: 200
         rescue
             @user = nil
         end

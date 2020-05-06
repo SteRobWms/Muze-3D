@@ -1,28 +1,41 @@
 class MuseumSerializer < ActiveModel::Serializer
-  attributes :id, :name, :background_image, :city, :state, :country, :description, :category, :creator, :exhibit_count, :exhibits, :favorite_museums
+    
+  attributes :id, :name, :city, :state, :country, :description, :category, :creator, :exhibits, :background_image
 
-    def creator 
-        {
-            id: self.object.user_id,
-            username: User.find(self.object.user_id).username
-        }
-    end 
+    # def initialize(museum: nil, user: nil)
+    #     @museum = museum
+    #     @user = user
+    # end
 
-    def favorite_museums
-        {
-            count: self.object.favorite_museums.count,
-            lovers: self.object.favorite_museums.map do |fav|
-                {
-                    username: User.find(fav.user_id).username,
-                    id: fav.user_id
-            }
-            end
-        }
+    # def serialize_museum()
+    #     serialized_museum = serialize_this_museum(@museum)
+    #     serialized_museum.to_json()
+    # end
+
+    def background_image
+        self.object.background_image.attached? ? self.object.background_image.service_url ? self.object.background_image.service_url : "Please update image" : "Please update image"
     end
     
-    def exhibit_count
-        self.object.exhibits.count
+    def creator
+        {id: self.object.user_id,
+        username: User.find(self.object.user_id).username}
     end
+
+    # def favorite_museums
+    #     {
+    #         count: self.object.favorite_museums.count,
+    #         lovers: self.object.favorite_museums.map do |fav|
+    #             {
+    #                 username: User.find(fav.user_id).username,
+    #                 id: fav.user_id
+    #         }
+    #         end
+    #     }
+    # end
+    
+    # def exhibit_count
+    #     self.object.exhibits.count
+    # end
 
     def exhibits
         self.object.exhibits.map do |exhibit|
@@ -30,10 +43,8 @@ class MuseumSerializer < ActiveModel::Serializer
                 name: exhibit.name,
                 id: exhibit.id,
                 description: exhibit.description,
-                background_image: exhibit.background_image,
-                lovers: exhibit.favorite_exhibits.map{|fav| User.find(fav.user_id).username},
-                lover_count: exhibit.favorite_exhibits.count
-            } 
+                background_image: exhibit.background_image.attached? ? exhibit.background_image.service_url ? exhibit.background_image.service_url : "Please update image" : "Please update image"
+            }
         end
     end
 end
