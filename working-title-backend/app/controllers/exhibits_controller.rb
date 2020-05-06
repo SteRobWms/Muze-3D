@@ -36,7 +36,12 @@ class ExhibitsController < ApplicationController
     end
     
     def destroy
-        @exhibit.destroy
+        if @exhibit.rooms.count > 0
+            return render json: {error: "You must delete this exhibit's rooms first!"}
+        else
+            @exhibit.destroy
+        end
+        render json: {message: "Exhibit Deleted"}
     end
     
     def add_room

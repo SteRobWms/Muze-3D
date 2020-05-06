@@ -27,7 +27,7 @@ export default class ExhibitForm extends React.Component {
         event.preventDefault()
         const formData = new FormData(event.target)
         this.submitExhibit(formData)
-            .then(console.log)
+            .then((exhibitData) => { window.location.href = `http://localhost:3001/exhibits/${exhibitData.id}` })
             .catch(console.error);
     }
 
@@ -49,7 +49,7 @@ export default class ExhibitForm extends React.Component {
                 <input type="text" name="description" required />
                 </label><br />
                 <label htmlFor="background_image">Upload Image
-                <input type="file" name="background_image" accept="image/*" />
+                <input type="file" name="background_image" required accept="image/*" />
                 </label><br />
                 <input type="submit" value="Submit" />
             </form>

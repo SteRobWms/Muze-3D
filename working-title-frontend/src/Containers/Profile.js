@@ -48,7 +48,13 @@ export default class Profile extends React.Component {
                     {this.state.showEdit ? <EditUserForm {...this.state} handleSubmit={this.handleSubmit} toggleEdit={this.toggleEdit} updateBioState={this.updateBioState} /> : null}
 
 
-                    <h2>Museums:</h2> {this.state.user.museums.length > 0
+                    <h2>Museums:</h2>
+                    <a href={`http://localhost:3001/museums/new`}>
+                        <button>
+                            Create a New Museum!
+                        </button>
+                    </a>
+                    {this.state.user.museums.length > 0
                         ? this.state.user.museums.map((museum, idx) => <MuseumTile key={idx} {...museum} />)
                         : <h4>"You haven't created any museums yet!"</h4>}
 

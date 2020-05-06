@@ -34,6 +34,11 @@ export default class App extends React.Component {
             }
         })
     }
+
+    redirectTo = (history, extension) => {
+        history.push(extension)
+    }
+
     loggedIn = (history) => {
         fetch("http://localhost:3000/loggedin", {
             method: "GET",
@@ -93,7 +98,7 @@ export default class App extends React.Component {
                         <Route exact path="/login" render={(routerProps) => <Login {...routerProps} setUserLocalStorage={this.setUserLocalStorage} setUserState={this.setUserState} loggedIn={this.loggedIn} />} />
 
                         <Route exact path="/museums" render={(routerProps) => <MuseumContainer {...routerProps} loggedIn={this.loggedIn} />} />
-                        <Route exact path="/museums/new" render={(routerProps) => <MuseumForm {...routerProps} loggedIn={this.loggedIn} />} />
+                        <Route exact path="/museums/new" render={(routerProps) => <MuseumForm {...routerProps} loggedIn={this.loggedIn} redirectTo={this.redirectTo} />} />
                         <Route exact path="/museums/:id/edit" render={(routerProps) => <div {...routerProps} >Edit Museum Form</div>} />
                         <Route exact path="/museums/:id" render={(routerProps) => <Museum {...routerProps} loggedIn={this.loggedIn} />} />
 

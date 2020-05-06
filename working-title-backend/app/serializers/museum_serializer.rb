@@ -13,7 +13,7 @@ class MuseumSerializer < ActiveModel::Serializer
     # end
 
     def background_image
-        self.object.background_image.service_url ? self.object.background_image.service_url : "Please update image"
+        self.object.background_image.attached? ? self.object.background_image.service_url ? self.object.background_image.service_url : "Please update image" : "Please update image"
     end
     
     def creator
@@ -43,7 +43,7 @@ class MuseumSerializer < ActiveModel::Serializer
                 name: exhibit.name,
                 id: exhibit.id,
                 description: exhibit.description,
-                background_image: exhibit.background_image.service_url ? exhibit.background_image.service_url : "update image"
+                background_image: exhibit.background_image.attached? ? exhibit.background_image.service_url ? exhibit.background_image.service_url : "Please update image" : "Please update image"
             }
         end
     end

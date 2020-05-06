@@ -9,6 +9,7 @@ class ExhibitSerializer < ActiveModel::Serializer
         else
             ""
         end
+        # self.object.background_image.attached? ? self.object.background_image.service_url ? self.object.background_image.service_url : "Please update image" : "Please update image"
     end
     
     def rooms
@@ -16,12 +17,7 @@ class ExhibitSerializer < ActiveModel::Serializer
         {
             id: room.id,
             exhibit_id: room.exhibit_id,
-            background_image: 
-                if room.background_image.attached?
-                    room.background_image.service_url
-                else
-                    ""
-                end,
+            background_image: room.background_image.attached? ? room.background_image.service_url ? room.background_image.service_url : "Please update image" : "Please update image",
             items: 
                 room.items.map do |item| 
                 {
@@ -30,12 +26,7 @@ class ExhibitSerializer < ActiveModel::Serializer
                     name: item.name,
                     description: item.description,
                     creator: item.creator,
-                    image:
-                        if item.image.attached?
-                            item.image.service_url
-                        else
-                            ""
-                        end,
+                    image: item.image.attached? ? item.image.service_url ? item.image.service_url : "Please update image" : "Please update image",
                     country_of_origin: item.country_of_origin,
                     state_of_origin: item.state_of_origin,
                     city_of_origin: item.city_of_origin,
@@ -57,9 +48,10 @@ class ExhibitSerializer < ActiveModel::Serializer
     def museum
         @museum = Museum.find(self.object.museum_id)
         {
+            id: @museum.id,
             name: @museum.name,
             category: @museum.category,
-            background_image: @museum.background_image.service_url
+            background_image: @museum.background_image.attached? ? @museum.background_image.service_url ? @museum.background_image.service_url : "Please update image" : "Please update image"
         }
     end
 

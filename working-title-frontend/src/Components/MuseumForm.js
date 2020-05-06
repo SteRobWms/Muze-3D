@@ -10,7 +10,7 @@ const MuseumForm = props => {
             // ex had setPost and (data.post)
             // .then(data => props.setMuseum(data.museum))
             // .then(response => response.json())
-            .then(console.log)
+            .then(museumData => { window.location.href = `http://localhost:3001/museums/${museumData.museum.id}` })
             .catch(console.error);
     }
 
@@ -39,7 +39,7 @@ const MuseumForm = props => {
                 </select>
             </label><br />
             <label htmlFor="background_image">Upload Image
-                <input type="file" name="background_image" accept="image/*" />
+                <input required type="file" name="background_image" accept="image/*" />
             </label><br />
             <input type="submit" value="Submit" />
         </form>

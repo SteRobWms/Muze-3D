@@ -91,12 +91,36 @@ export default class Exhibit extends React.Component {
         // .then(alert("Room Deleted Successfully"))
     }
 
+    deleteExhibit = () => {
+        fetch(`http://localhost:3000/exhibits/${this.props.match.params.id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": localStorage.getItem("token")
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) { alert(data.error) }
+                else { alert(data.message); window.location.href = `http://localhost:3001/museums/${this.state.exhibit.museum.id}` }
+            })
+        // .then(alert("Room Deleted Successfully"))
+    }
+
     render() {
         if (this.state.exhibit) {
             return (
                 <div className="show">
-                    <h2>Exhibit: {this.state.exhibit.name}</h2>
-                    <h3>Parent Museum: {this.state.exhibit.museum.name}</h3>
+                    <h2>Exhibit: {this.state.exhibit.name}
+                        {this.state.exhibit.creator.id === parseInt(localStorage.user)
+                            ? <button onClick={() => this.deleteExhibit()}>
+                                Delete this Exhibit (You must delete its rooms first)
+                            </button>
+                            : false
+                        }
+                    </h2>
+                    <a href={`http://localhost:3001/museums/${this.state.exhibit.museum.id}`}>
+                        <h3>Parent Museum: {this.state.exhibit.museum.name}</h3>
+                    </a>
                     <a href={`http://localhost:8081/index.html?exhibit=${this.state.exhibit.id}`}>
                         <div style={{ width: "200px", height: "200px", overflow: "hidden" }}>
                             <img style={{ maxWidth: "100%" }} src={this.state.exhibit.background_image} alt={this.state.name} />

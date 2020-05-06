@@ -30,7 +30,12 @@ class MuseumsController < ApplicationController
     end
 
     def destroy
-        @museum.destroy
+        if @museum.exhibits.count > 0
+            return render json: {error: "You must delete this museum's exhibits first!"}
+        else
+            @museum.destroy
+        end
+        render json: {message: "Museum Deleted"}
     end
 
     private

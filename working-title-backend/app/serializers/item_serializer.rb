@@ -15,7 +15,7 @@ class ItemSerializer < ActiveModel::Serializer
                 id: exhibit.id,
                 name: exhibit.name,
                 description: exhibit.description,
-                background_image: exhibit.background_image
+                background_image: exhibit.background_image.attached? ? exhibit.background_image.service_url ? exhibit.background_image.service_url : "Please update image" : "Please update image"
             }
         end
         
@@ -28,7 +28,7 @@ class ItemSerializer < ActiveModel::Serializer
                 country: museum.country,
                 state: museum.state,
                 city: museum.city,
-                background_image: museum.background_image,
+                background_image: museum.background_image.attached? ? museum.background_image.service_url ? museum.background_image.service_url : "Please update image" : "Please update image",
                 category: museum.category
             }
         end
