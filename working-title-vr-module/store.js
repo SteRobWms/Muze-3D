@@ -19,8 +19,10 @@ function updateComponents() {
 }
 
 // Will be called on the first componentDidMount using results of fetch using exhibit id, derived from a component's initial props
-export function setExhibit(exhibit) {
+export function initialState(exhibit) {
     State.exhibit = exhibit;
+    State.roomList = exhibit.rooms;
+    State.currentRoom = exhibit.rooms[0];
     updateComponents();
 }
 

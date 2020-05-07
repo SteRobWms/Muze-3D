@@ -1,24 +1,26 @@
 import React from 'react';
 import {
-    AppRegistry,
-    Environment,
-    Image,
     NativeModules,
-    StyleSheet,
     Text,
     View,
     VrButton
 } from 'react-360';
-import { styles } from './stylesheet'
+import styles from './stylesheet'
 import { connect } from './store'
+
+const surfaceModule = NativeModules.surfaceModule;
 
 class ItemList extends React.Component {
     render() {
         return (
-            <View style={stylesh.clipboardPanel}>
-                <View style={stylesh.greetingBox}>
-                    <Text style={stylesh.greeting}>Here is where I may display VR context info</Text>
-                </View>
+            <View style={styles.itemList}>
+                {this.props.currentRoom ? this.props.currentRoom.items.map((item, idx) => {
+                    <VrButton style={styles.button} onClick={() => surfaceModule.createPanel()}>
+                        <Text style={styles.textSize}>{item.name}</Text>
+                    </VrButton>
+                })
+                    : <Text style={styles.textSize}>No Items Loaded!</Text>
+                }
             </View>
         );
     }
