@@ -1,5 +1,7 @@
 import React from 'react'
 import ITFC from '../Containers/ItemTileFormContainer'
+import '../../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../../node_modules/startbootstrap-heroic-features/css/heroic-features.css'
 
 export default class RoomTile extends React.Component {
 
@@ -37,7 +39,6 @@ export default class RoomTile extends React.Component {
                     : false
                 }
                 <div>
-                    {/* {this.props.exhibit ? <h3>Exhibit: {this.props.exhibit.name}</h3> : false} */}
                     <button onClick={() => this.props.addItem(this.roomId)}>Add Item</button>
                     {this.props.items && this.props.items.length > 0
                         ? this.props.items.map((item, idx) => {

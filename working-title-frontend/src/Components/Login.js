@@ -49,13 +49,13 @@ export default class Login extends React.Component {
                                         <h3 className="login-heading mb-4">Welcome back!</h3>
                                         <form name="login" onSubmit={(e) => this.login(e)}>
                                             <div className="form-label-group">
-                                                <input type="text" onChange={(e) => this.handleChange(e)} name="username" id="inputEmail" className="form-control" placeholder="User Name" required autofocus />
-                                                <label for="inputEmail">User Name</label>
+                                                <input type="text" onChange={(e) => this.handleChange(e)} name="username" id="inputEmail" className="form-control" placeholder="User Name" required autoFocus />
+                                                <label htmlFor="inputEmail">User Name</label>
                                             </div>
 
                                             <div className="form-label-group">
                                                 <input type="password" onChange={(e) => this.handleChange(e)} id="inputPassword" name="password" className="form-control" placeholder="Password" required />
-                                                <label for="inputPassword">Password</label>
+                                                <label htmlFor="inputPassword">Password</label>
                                             </div>
                                             <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Log in</button>
                                             <div className="text-center">

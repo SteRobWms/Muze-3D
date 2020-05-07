@@ -1,6 +1,8 @@
 import React from 'react'
 import ItemForm from '../Components/ItemForm'
 import ItemTile from '../Components/ItemTile'
+import '../../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../../node_modules/startbootstrap-heroic-features/css/heroic-features.css'
 
 export default class ItemTileFormContainer extends React.Component {
 

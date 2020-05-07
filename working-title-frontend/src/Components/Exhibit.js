@@ -110,42 +110,68 @@ export default class Exhibit extends React.Component {
         if (this.state.exhibit) {
             return (
                 <div className="show">
-                    <h2>Exhibit: {this.state.exhibit.name}
+                    <h3>Name: {this.state.exhibit.name}
                         {this.state.exhibit.creator.id === parseInt(localStorage.user)
                             ? <button onClick={() => this.deleteExhibit()}>
                                 Delete this Exhibit (You must delete its rooms first)
                             </button>
                             : false
                         }
-                    </h2>
-                    <a href={`http://localhost:3001/museums/${this.state.exhibit.museum.id}`}>
-                        <h3>Parent Museum: {this.state.exhibit.museum.name}</h3>
-                    </a>
-                    <a href={`http://localhost:8081/index.html?exhibit=${this.state.exhibit.id}`}>
-                        <div style={{ width: "200px", height: "200px", overflow: "hidden" }}>
-                            <img style={{ maxWidth: "100%" }} src={this.state.exhibit.background_image} alt={this.state.name} />
-                        </div>
-                        <h3>View Exhibit In VR</h3>
-                    </a>
+                        {this.state.exhibit.creator.id === parseInt(localStorage.user)
+                            ?
+                            <button onClick={() => { this.addRoom() }}>
+                                Add a Room
+                            </button>
+                            : false
+                        }
+                    </h3>
+                    <img src={this.state.exhibit.background_image} alt={this.state.name} />
                     <h3>Description: {this.state.exhibit.description}</h3>
-                    <button onClick={() => this.toggleEdit()}>{this.state.showEdit ? "Cancel Edit" : "Edit Description"}</button>
-                    <button onClick={() => this.addRoom()}>Add new room</button><br /><br />
-                    {this.state.showEdit ? <EditExhibitForm exhibit={this.state.exhibit} toggleEdit={this.toggleEdit} updateState={this.updateState} /> : false}<br />
-                    {this.state.exhibit.rooms.length > 0
-                        ? this.state.exhibit.rooms.map((room, idx) => {
-                            return (
-                                // <h4>Room {room.id}</h4>
-                                // <a href={`http://localhost:3001/rooms/${room.id}`} key={idx}>
-                                <RoomTile {...room} deleteRoom={this.deleteRoom} handleUpdateRoom={this.handleUpdateRoom} addItem={this.addItem} updateState={this.updateState} />
-                                // </a>
-                            )
-                        })
-                        : false
-                    }
-                    <br />
-                </div>
-            )
+                    {/* <h3>City: {this.state.museum.city}</h3> */}
+                    {/* <h3>State: {this.state.museum.state}</h3> */}
+                    {/* <h3>Country: {this.state.museum.country}</h3> */}
+                    {/* <h3>Category: {this.state.museum.category}</h3> */}
+                </div >)
         }
         else { return ("loading...") }
     }
+}
+
+{/* <div className="show">
+                        <h2>Exhibit: {this.state.exhibit.name}
+                            {this.state.exhibit.creator.id === parseInt(localStorage.user)
+                                ? <button onClick={() => this.deleteExhibit()}>
+                                    Delete this Exhibit (You must delete its rooms first)
+                            </button>
+                                : false
+                            }
+                        </h2>
+                        <a href={`http://localhost:3001/museums/${this.state.exhibit.museum.id}`}>
+                            <h3>Parent Museum: {this.state.exhibit.museum.name}</h3>
+                        </a>
+                        <a href={`http://localhost:8081/index.html?exhibit=${this.state.exhibit.id}`}>
+                            <div style={{ width: "200px", height: "200px", overflow: "hidden" }}>
+                                <img style={{ maxWidth: "100%" }} src={this.state.exhibit.background_image} alt={this.state.name} />
+                            </div>
+                            <h3>View Exhibit In VR</h3>
+                        </a>
+                        <h3>Description: {this.state.exhibit.description}</h3>
+                        <button onClick={() => this.toggleEdit()}>{this.state.showEdit ? "Cancel Edit" : "Edit Description"}</button>
+                        <button onClick={() => this.addRoom()}>Add new room</button><br /><br />
+                        {this.state.showEdit ? <EditExhibitForm exhibit={this.state.exhibit} toggleEdit={this.toggleEdit} updateState={this.updateState} /> : false}<br />
+                        {this.state.exhibit.rooms.length > 0
+                            ? this.state.exhibit.rooms.map((room, idx) => {
+                                return (
+                                    // <h4>Room {room.id}</h4>
+                                    // <a href={`http://localhost:3001/rooms/${room.id}`} key={idx}>
+                                    <RoomTile {...room} deleteRoom={this.deleteRoom} handleUpdateRoom={this.handleUpdateRoom} addItem={this.addItem} updateState={this.updateState} />
+                                    // </a>
+                                )
+                            })
+                            : false
+                        }
+                        <br />
+                    </div>
+            )
+        } */
 }
