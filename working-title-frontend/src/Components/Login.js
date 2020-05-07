@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import '../../src/index.css'
 
 export default class Login extends React.Component {
 
@@ -33,22 +34,53 @@ export default class Login extends React.Component {
                 this.props.setUserLocalStorage(userInfo.user.id)
                 this.props.history.push("/profile")
             })
-        // .then(() => this.props.history.push("/profile"))
     }
 
+    // <div>
+
+    // < form name = "login" onSubmit = {(e) => this.login(e)
+    // }>
+    // <label>Username</label>
+    // <input onChange={(e) => this.handleChange(e)} name="username" type="text" required />
+    // <label>Password</label>
+    // <input onChange={(e) => this.handleChange(e)} name="password" type="password" required />
+    // <input type="submit" />
+    // </form >
+    // <Link to="/signup">Sign Up</Link>
+    // </div>
     render() {
         return (
-            <div>
-                <h2>Login</h2>
-                <form name="login" onSubmit={(e) => this.login(e)}>
-                    <label>Username</label>
-                    <input onChange={(e) => this.handleChange(e)} name="username" type="text" required />
-                    <label>Password</label>
-                    <input onChange={(e) => this.handleChange(e)} name="password" type="password" required />
-                    <input type="submit" />
-                </form>
-                <Link to="/signup">Sign Up</Link>
-            </div>
+            < div className="container-fluid" >
+                <div className="row no-gutter">
+                    <div className="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+                    <div className="col-md-8 col-lg-6">
+                        <div className="login d-flex align-items-center py-5">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-md-9 col-lg-8 mx-auto">
+                                        <h3 className="login-heading mb-4">Welcome back!</h3>
+                                        <form name="login" onSubmit={(e) => this.login(e)}>
+                                            <div className="form-label-group">
+                                                <input type="text" onChange={(e) => this.handleChange(e)} name="username" id="inputEmail" className="form-control" placeholder="User Name" required autofocus />
+                                                <label for="inputEmail">User Name</label>
+                                            </div>
+
+                                            <div className="form-label-group">
+                                                <input type="password" onChange={(e) => this.handleChange(e)} id="inputPassword" name="password" className="form-control" placeholder="Password" required />
+                                                <label for="inputPassword">Password</label>
+                                            </div>
+                                            <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                                            <div className="text-center">
+                                                <a className="small" href="http://localhost:3001/signup">Not a member yet? Sign up here!</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div >
         )
     }
 

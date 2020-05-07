@@ -15,6 +15,8 @@ import NavBar from './Containers/NavBar';
 import SignUp from './Components/SignUp';
 import Profile from './Containers/Profile';
 import VrPortal from './Containers/VrPortal';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/startbootstrap-heroic-features/css/heroic-features.css';
 
 export default class App extends React.Component {
 
