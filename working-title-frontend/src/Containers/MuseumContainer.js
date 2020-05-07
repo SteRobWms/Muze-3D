@@ -28,16 +28,26 @@ export default class MuseumContainer extends React.Component {
     render() {
         return (
             <div>
-                {this.state.displayMuseums
-                    ? this.state.displayMuseums.map((museum, idx) => {
-                        return (
-                            <a className="list" href={`http://localhost:3001/museums/${museum.id}`} key={idx}>
-                                <MuseumTile {...museum} />
-                            </a>
-                        )
-                    })
-                    : 'loading...'}
-            </div >
+                <div className="container">
+                    <div>
+                        <header className="jumbotron my-4" style={{ backgroundImage: `url(http://res.cloudinary.com/dalaru/image/upload/591w4perbzxawo217frkm65qdjxy.JPG)` }}>
+                            <h1 className="display-3" style={{ color: "white", textShadow: "2px 2px 2px #111111" }}>Museums</h1>
+                            <br />
+                        </header>
+                        <div className="row text-center">
+                            {this.state.displayMuseums
+                                ? this.state.displayMuseums.map((museum, idx) => <MuseumTile key={idx} {...museum} />)
+                                : <h2>Loading...</h2>
+                            }
+                        </div>
+                        <footer className="py-5 bg-dark">
+                            <div className="container">
+                                <p className="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </div>
         )
     }
 }

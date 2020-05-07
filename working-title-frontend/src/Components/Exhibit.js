@@ -1,6 +1,8 @@
 import React from 'react'
 import RoomTile from './RoomTile'
 import EditExhibitForm from './EditExhibitForm'
+import '../../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../../node_modules/startbootstrap-heroic-features/css/heroic-features.css'
 
 export default class Exhibit extends React.Component {
 
@@ -109,29 +111,49 @@ export default class Exhibit extends React.Component {
     render() {
         if (this.state.exhibit) {
             return (
-                <div className="show">
-                    <h3>Name: {this.state.exhibit.name}
-                        {this.state.exhibit.creator.id === parseInt(localStorage.user)
-                            ? <button onClick={() => this.deleteExhibit()}>
+                <div className="container">
+                    <header className="jumbotron my-4" style={{ backgroundImage: `url(${this.state.exhibit.background_image})` }}>
+                        <h1 className="display-3" style={{ color: "white", textShadow: "2px 2px 2px #111111" }}>{this.state.exhibit.name}</h1>
+                        <h2 style={{ color: "white", textShadow: "2px 2px 2px #111111" }}>Description: {this.state.exhibit.description}</h2>
+                        <a href={`http://localhost:3001/museums/${this.state.exhibit.museum.id}`}>
+                            <h3 style={{ color: "white", textShadow: "2px 2px 2px #111111" }}>Parent Museum: {this.state.exhibit.museum.name}</h3>
+                        </a>
+                        <br />
+                        {(this.state.exhibit.creator.id === parseInt(localStorage.user)) && this.state.exhibit.rooms.length === 0
+                            ? <button type="button" className="btn btn-primary btn-lg" style={{ color: "white" }} onClick={() => this.deleteExhibit()}>
                                 Delete this Exhibit (You must delete its rooms first)
                             </button>
                             : false
                         }
                         {this.state.exhibit.creator.id === parseInt(localStorage.user)
                             ?
-                            <button onClick={() => { this.addRoom() }}>
+                            <button type="button" className="btn btn-primary btn-lg" style={{ color: "white" }} onClick={() => { this.addRoom() }}>
                                 Add a Room
                             </button>
                             : false
                         }
-                    </h3>
-                    <img src={this.state.exhibit.background_image} alt={this.state.name} />
-                    <h3>Description: {this.state.exhibit.description}</h3>
-                    {/* <h3>City: {this.state.museum.city}</h3> */}
-                    {/* <h3>State: {this.state.museum.state}</h3> */}
-                    {/* <h3>Country: {this.state.museum.country}</h3> */}
-                    {/* <h3>Category: {this.state.museum.category}</h3> */}
-                </div >)
+                        <div style={{ display: "inline-block", width: "20px" }}></div>
+                        <a href={`http://localhost:8081/index.html?exhibit=${this.state.exhibit.id}`}>
+                            <button type="button" className="btn btn-primary btn-lg" style={{ color: "white" }}>View Exhibit In VR
+                            </button>
+                        </a><br /><br />
+                    </header>
+                    <h2>Rooms:</h2>
+                    <div className="row text-center">
+                        {this.state.exhibit.rooms.length > 0
+                            ? this.state.exhibit.rooms.map((room, idx) => {
+                                return (
+                                    // <h4>Room {room.id}</h4>
+                                    // <a href={`http://localhost:3001/rooms/${room.id}`} key={idx}>
+                                    <RoomTile {...room} deleteRoom={this.deleteRoom} handleUpdateRoom={this.handleUpdateRoom} addItem={this.addItem} updateState={this.updateState} />
+                                    // </a>
+                                )
+                            })
+                            : false
+                        }
+                    </div>
+                </div >
+            )
         }
         else { return ("loading...") }
     }

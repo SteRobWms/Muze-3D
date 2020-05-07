@@ -59,12 +59,6 @@ export default class Museum extends React.Component {
                                 : false
                             }
                         </h3>
-                        {/* <img src={this.state.museum.background_image} alt={this.state.name} />
-                        <h3>Description: {this.state.museum.description}</h3>
-                        <h3>City: {this.state.museum.city}</h3>
-                        <h3>State: {this.state.museum.state}</h3>
-                        <h3>Country: {this.state.museum.country}</h3>
-                        <h3>Category: {this.state.museum.category}</h3> */}
                         <br />
                         <h2>Exhibits: </h2>
                         <div className="row text-center">
