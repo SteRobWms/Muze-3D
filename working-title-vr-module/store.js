@@ -7,7 +7,8 @@ const State = {
     currentRoom: false,
     // nextRoom: false,
     // previousRoom: false,
-    currentItem: false
+    currentItem: false,
+    viewItem: false
 }
 
 const listeners = new Set();
@@ -36,6 +37,17 @@ export function resetCurrentItem() {
     State.currentItem = false;
     updateComponents();
 }
+
+export function hideItem() {
+    State.viewItem = false;
+    updateComponents();
+}
+
+export function showItem() {
+    State.viewItem = true;
+    updateComponents();
+}
+
 // Room navigation, starting with setting the first room
 export function setFirstRoom() {
     State.currentRoom = State.roomList[0];
@@ -69,7 +81,8 @@ export function connect(Component) {
             currentRoom: State.currentRoom,
             // nextRoom: State.nextRoom,
             // previousRoom: State.previousRoom,
-            currentItem: State.currentItem
+            currentItem: State.currentItem,
+            viewItem: State.viewItem
         }
 
         _listener = () => {
@@ -80,7 +93,8 @@ export function connect(Component) {
                 currentRoom: State.currentRoom,
                 // nextRoom: State.nextRoom,
                 // previousRoom: State.previousRoom,
-                currentItem: State.currentItem
+                currentItem: State.currentItem,
+                viewItem: State.viewItem
             })
         }
 
@@ -96,7 +110,8 @@ export function connect(Component) {
                     roomList={this.state.rooms}
                     currentRoomIndex={this.state.currentRoomIndex}
                     currentRoom={this.state.currentRoom}
-                    currentItem={this.state.currentItem} />
+                    currentItem={this.state.currentItem}
+                    viewItem={this.state.viewItem} />
             )
         }
     }

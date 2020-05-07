@@ -17,18 +17,10 @@ class StatusPanel extends React.Component {
             this.props.exhibit.museum
                 ?
                 <View style={styles.statusPanel} >
-                    <Text>
-                        Museum: {this.props.exhibit.museum.name}
-                    </Text>
-                    <Text>
-                        Added by: {this.props.exhibit.creator.username}
-                    </Text>
-                    <Text>
-                        Exhibit: {this.props.exhibit.name}
-                    </Text>
-                    <Text>
-                        Room {parseInt(this.props.currentRoomIndex) + 1}
-                    </Text>
+                    <Text style={styles.headerText}>Museum: {this.props.exhibit.museum.name}</Text>
+                    <Text style={styles.headerText}>Added by: {this.props.exhibit.creator.username}</Text>
+                    <Text style={styles.headerText}>Exhibit: {this.props.exhibit.name}</Text>
+                    <Text style={styles.headerText}>Room {parseInt(this.props.currentRoomIndex) + 1}</Text>
                 </View>
                 : <View><Text>Loading...</Text></View>
         )

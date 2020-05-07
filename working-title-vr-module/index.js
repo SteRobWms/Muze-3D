@@ -8,11 +8,12 @@ import {
     View,
     VrButton
 } from 'react-360';
-import ConnectedStatusPanel from './statusPanel';
-import ConnectedItemPanel from './itemPanel';
+// import ConnectedItemContainer from './itemContainer';
 import ConnectedItemList from './itemList';
+import ConnectedItemPanel from './itemPanel';
+import ConnectedStatusPanel from './statusPanel';
 import styles from './stylesheet';
-import { connect, initialState } from './store';
+import { connect, initialState, nextRoom, previousRoom } from './store';
 
 
 // Hold misc floating buttons here in index
@@ -39,9 +40,37 @@ class ButtonToSafety extends React.Component {
     }
 }
 
+class PrevRoomButton extends React.Component {
+
+    render() {
+        return (
+            <View>
+                <VrButton style={styles.button} onClick={() => previousRoom()}>Previous Room</VrButton>
+            </View>
+        )
+    }
+}
+
+class NextRoomButton extends React.Component {
+
+    render() {
+        return (
+            <View>
+                <VrButton style={styles.button} onClick={() => nextRoom()}>Next Room</VrButton>
+            </View>
+        )
+    }
+}
+
+
+const ConnectedPrevRoomButton = connect(PrevRoomButton);
+const ConnectedNextRoomButton = connect(NextRoomButton);
 const ConnectedButtonToSafety = connect(ButtonToSafety);
 
+AppRegistry.registerComponent('ConnectedNextRoomButton', () => ConnectedNextRoomButton);
+AppRegistry.registerComponent('ConnectedPrevRoomButton', () => ConnectedPrevRoomButton);
 AppRegistry.registerComponent('ConnectedButtonToSafety', () => ConnectedButtonToSafety);
-AppRegistry.registerComponent('ConnectedStatusPanel', () => ConnectedStatusPanel);
-AppRegistry.registerComponent('ConnectedItemPanel', () => ConnectedItemPanel);
+// AppRegistry.registerComponent('ConnectedItemContainer', () => ConnectedItemContainer);
 AppRegistry.registerComponent('ConnectedItemList', () => ConnectedItemList);
+AppRegistry.registerComponent('ConnectedItemPanel', () => ConnectedItemPanel);
+AppRegistry.registerComponent('ConnectedStatusPanel', () => ConnectedStatusPanel);

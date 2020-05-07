@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     },
     itemList: {
         width: 1000,
-        height: 60,
+        height: 90,
         backgroundColor: '#0EB1D288',
         borderColor: '#00345988',
         borderWidth: 5,
@@ -24,18 +24,30 @@ const styles = StyleSheet.create({
         // alignItems: 'stretch',
         padding: 10
     },
+    itemPanel: {
+        width: 750,
+        height: 650,
+        backgroundColor: '#0EB1D288',
+        borderColor: '#00345988',
+        borderWidth: 5,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+        padding: 10
+    },
     header: {
         backgroundColor: '#003459'
     },
     headerText: {
-        fontSize: 40,
-        textAlign: 'center',
+        fontSize: 24,
+        // textAlign: 'center',
         fontWeight: 'bold'
     },
     textSize: {
         fontSize: 20,
-        textAlign: 'center'
+        textAlign: 'center',
     },
+
     infoHeader: {
         textAlign: 'center',
         fontWeight: 'bold',
@@ -48,6 +60,20 @@ const styles = StyleSheet.create({
         borderColor: '#00345988',
         borderWidth: 3,
         padding: 10
+    },
+    imageContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignContent: 'center',
+        height: 400,
+        width: 400,
+        padding: 5
+    },
+    image: {
+        flexDirection: "column",
+        justifyContent: 'center',
+        height: 400,
+        width: 400,
     },
     hover: {
         height: 60,

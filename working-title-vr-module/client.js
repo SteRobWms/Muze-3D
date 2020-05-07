@@ -3,23 +3,6 @@
 
 import { ReactInstance, Surface, Module, Location } from 'react-360-web';
 
-class surfaceModule extends Module {
-    constructor() {
-        super('surfaceModule');
-    }
-
-    destroyPanel() {
-        r360.detachRoot(connectedItemPanel);
-    }
-
-    createPanel() {
-        r360.renderToSurface(
-            r360.createRoot('ConnectedItemPanel', {}),
-            surface
-        );
-    }
-}
-
 function init(bundle, parent, options = {}) {
     r360 = new ReactInstance(bundle, parent, {
         // Add custom options here
@@ -30,21 +13,45 @@ function init(bundle, parent, options = {}) {
         ...options
     });
 
-    surface = r360.getDefaultSurface();
+    // Link to get back to the 2D frontend
+    const connectedButtonToSafetyPanel = new Surface(250, 75, Surface.SurfaceShape.Flat)
+    connectedButtonToSafetyPanel.setAngle(0, -0.6);
+    r360.renderToSurface(
+        r360.createRoot('ConnectedButtonToSafety', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]) }),
+        connectedButtonToSafetyPanel
+    );
+    // // Link to next room
+    // const connectedNextRoomButton = new Surface(250, 75, Surface.SurfaceShape.Flat)
+    // connectedNextRoomButton.setAngle(-0.4, 0);
+    // r360.renderToSurface(
+    //     r360.createRoot('ConnectedNextRoomButton', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]) }),
+    //     connectedNextRoomButton
+    // );
+    // // Link to previous room
+    // const connectedPrevRoomButton = new Surface(250, 75, Surface.SurfaceShape.Flat)
+    // connectedPrevRoomButton.setAngle(0.4, 0);
+    // r360.renderToSurface(
+    //     r360.createRoot('ConnectedPrevRoomButton', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]) }),
+    //     connectedPrevRoomButton
+    // );
 
+    // surface = r360.getDefaultSurface();
+
+    const connectedItemPanel = new Surface(800, 650, Surface.SurfaceShape.Flat)
+    connectedItemPanel.setAngle(0, 0.03)
+    // connectedItemPanel = r360.renderToSurface(
+    r360.renderToSurface(
+        r360.createRoot('ConnectedItemPanel', { /* initial props */ }),
+        connectedItemPanel
+        // r360.getDefaultSurface()
+    );
+
+    // List of buttons at bottom of screen to show respective items
     const connectedItemList = new Surface(1000, 100, Surface.SurfaceShape.Flat)
     connectedItemList.setAngle(0, -0.47);
     r360.renderToSurface(
         r360.createRoot('ConnectedItemList', { /* initial props */ }),
         connectedItemList
-    );
-
-    const connectedButtonToSafetyPanel = new Surface(300, 75, Surface.SurfaceShape.Flat)
-    connectedButtonToSafetyPanel.setAngle(0, 0);
-    // Render your app content to the default cylinder surface
-    r360.renderToSurface(
-        r360.createRoot('ConnectedButtonToSafety', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]) }),
-        connectedButtonToSafetyPanel
     );
 
     // At top of screen, show current location info
@@ -58,10 +65,25 @@ function init(bundle, parent, options = {}) {
         connectedStatusPanel
     );
 
-
-
     // Load the initial environment
     r360.compositor.setBackground(r360.getAssetURL('360_world.jpg'));
+}
+
+class surfaceModule extends Module {
+    constructor() {
+        super('surfaceModule');
+    }
+
+    destroyPanel() {
+        r360.detachRoot(connectedItemPanel);
+    }
+
+    createPanel() {
+        r360.renderToLocation(
+            r360.createRoot('ConnectedItemPanel', {}),
+            itemPanelLocation
+        );
+    }
 }
 
 window.React360 = { init };
