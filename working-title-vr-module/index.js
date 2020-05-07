@@ -39,25 +39,25 @@ export class ButtonToSafety extends React.Component {
 export class TestPanel extends React.Component {
 
     state = {
-        museum: {
+        exhibit: {
             background_image: "https://picsum.photos/300"
         }
     }
 
     componentDidMount() {
-        fetch("http://localhost:3000/museums/1")
+        fetch(`http://localhost:3000/exhibits/${this.props.exhibitID}`)
             .then(response => response.json())
-            .then(museum => {
-                this.setState({ ...this.state, museum });
-                Environment.setBackgroundImage({ uri: this.state.museum.background_image });
+            .then(data => {
+                console.log(data);
+                this.setState({ exhibit: data });
+                Environment.setBackgroundImage({ uri: this.state.exhibit.rooms[0].background_image })
             })
-
     }
 
     render() {
         return (
             <View style={styles.panel} >
-                <Image source={{ uri: this.state.museum.background_image }} />
+                <Image source={{ uri: this.state.exhibit.background_image }} />
             </View>
         )
     }

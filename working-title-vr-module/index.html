@@ -24,6 +24,10 @@
             document.getElementById('container'),
             {
                 assetRoot: 'static_assets/',
+                initialProps: {
+                    startURL: window.location,
+                    exhibitId: parseInt(window.location.search.split('=')[1])
+                }
             }
         );
     </script>
