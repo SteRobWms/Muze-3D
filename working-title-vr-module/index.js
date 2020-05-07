@@ -45,7 +45,9 @@ class PrevRoomButton extends React.Component {
     render() {
         return (
             <View>
-                <VrButton style={styles.button} onClick={() => previousRoom()}>Previous Room</VrButton>
+                <VrButton style={styles.button} onClick={() => previousRoom()}>
+                    <Text style={styles.infoHeader}>Previous Room</Text>
+                </VrButton>
             </View>
         )
     }
@@ -56,7 +58,9 @@ class NextRoomButton extends React.Component {
     render() {
         return (
             <View>
-                <VrButton style={styles.button} onClick={() => nextRoom()}>Next Room</VrButton>
+                <VrButton style={styles.button} onClick={() => nextRoom()}>
+                    <Text style={styles.infoHeader}>Next Room</Text>
+                </VrButton>
             </View>
         )
     }

@@ -20,20 +20,6 @@ function init(bundle, parent, options = {}) {
         r360.createRoot('ConnectedButtonToSafety', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]) }),
         connectedButtonToSafetyPanel
     );
-    // // Link to next room
-    // const connectedNextRoomButton = new Surface(250, 75, Surface.SurfaceShape.Flat)
-    // connectedNextRoomButton.setAngle(-0.4, 0);
-    // r360.renderToSurface(
-    //     r360.createRoot('ConnectedNextRoomButton', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]) }),
-    //     connectedNextRoomButton
-    // );
-    // // Link to previous room
-    // const connectedPrevRoomButton = new Surface(250, 75, Surface.SurfaceShape.Flat)
-    // connectedPrevRoomButton.setAngle(0.4, 0);
-    // r360.renderToSurface(
-    //     r360.createRoot('ConnectedPrevRoomButton', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]) }),
-    //     connectedPrevRoomButton
-    // );
 
     // surface = r360.getDefaultSurface();
 
@@ -58,13 +44,25 @@ function init(bundle, parent, options = {}) {
     const connectedStatusPanel = new Surface(1000, 100, Surface.SurfaceShape.Flat);
     connectedStatusPanel.setAngle(0, 0.47);
     // const connectedStatusPanel = new Location([0, 0, -4]);
-
     r360.renderToSurface(
         // This right here. Figuring out to put currentURL and exhibitID here took 5 hours. This lets StatusPanel see the URL passed from the frontend link.
         r360.createRoot('ConnectedStatusPanel', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]) }),
         connectedStatusPanel
     );
-
+    // Link to next room
+    const connectedNextRoomButton = new Surface(200, 75, Surface.SurfaceShape.Flat);
+    connectedNextRoomButton.setAngle(0.65, 0);
+    r360.renderToSurface(
+        r360.createRoot('ConnectedNextRoomButton', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]) }),
+        connectedNextRoomButton
+    );
+    // Link to previous room
+    const connectedPrevRoomButton = new Surface(175, 75, Surface.SurfaceShape.Flat);
+    connectedPrevRoomButton.setAngle(-0.6, 0);
+    r360.renderToSurface(
+        r360.createRoot('ConnectedPrevRoomButton', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]) }),
+        connectedPrevRoomButton
+    );
     // Load the initial environment
     r360.compositor.setBackground(r360.getAssetURL('360_world.jpg'));
 }

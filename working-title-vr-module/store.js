@@ -1,4 +1,5 @@
 import React from 'react'
+import { Environment } from 'react-360'
 
 const State = {
     exhibit: false,
@@ -57,7 +58,8 @@ export function setFirstRoom() {
 export function nextRoom() {
     if ((State.currentRoomIndex + 1) < State.roomList.length) {
         State.currentRoom = State.roomList[State.currentRoomIndex + 1];
-        State.currentRoomIndex = State.currentRoomIndex + 1
+        State.currentRoomIndex = State.currentRoomIndex + 1;
+        Environment.setBackgroundImage({ uri: State.currentRoom.background_image })
     }
     else { alert("You have reached the last room. Thanks for using Muze3D!") }
     updateComponents();
@@ -67,6 +69,8 @@ export function previousRoom() {
     if (State.currentRoomIndex > 0) {
         State.currentRoom = State.roomList[State.currentRoomIndex - 1];
         State.currentRoomIndex = State.currentRoomIndex - 1
+        Environment.setBackgroundImage({ uri: State.currentRoom.background_image })
+
     }
     else { alert("You're still in the first room. There's nowhere to go but forward") }
     updateComponents();

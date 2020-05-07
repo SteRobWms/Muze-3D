@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         borderColor: '#00345988',
         borderWidth: 5,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         // alignItems: 'stretch',
         padding: 10
     },
