@@ -4,45 +4,21 @@ import {
     Environment,
     Image,
     NativeModules,
-    StyleSheet,
     Text,
     View,
     VrButton
 } from 'react-360';
+import ConnectedStatusPanel from './statusPanel'
+import ConnectedItemPanel from './itemPanel'
+import ConnectedItemList from './itemList'
+import { styles } from './stylesheet'
+import { connect } from './store'
 
-export default class Clipboard extends React.Component {
-    render() {
-        return (
-            <View style={styles.clipboardPanel}>
-                <View style={styles.greetingBox}>
-                    <Text style={styles.greeting}>Here is where I may display VR context info</Text>
-                </View>
-            </View>
-        );
-    }
-};
 
-export class ButtonToSafety extends React.Component {
-    render() {
-        return (
-            <View style={styles.panel}>
-                <View style={styles.greetingBox}>
-                    <VrButton onClick={() => NativeModules.LinkingManager.openURL('http://localhost:3001/')} >
-                        <Text style={styles.greeting}>Go Back to 2D Site</Text>
-                    </VrButton>
-                </View>
-            </View>
-        );
-    }
-}
+// Hold misc floating buttons here in index
 
-export class TestPanel extends React.Component {
 
-    state = {
-        exhibit: {
-            background_image: "https://picsum.photos/300"
-        }
-    }
+class ButtonToSafety extends React.Component {
 
     componentDidMount() {
         fetch(`http://localhost:3000/exhibits/${this.props.exhibitID}`)
@@ -56,40 +32,20 @@ export class TestPanel extends React.Component {
 
     render() {
         return (
-            <View style={styles.panel} >
-                <Image source={{ uri: this.state.exhibit.background_image }} />
+            <View style={stylesh.panel}>
+                <View style={stylesh.greetingBox}>
+                    <VrButton onClick={() => NativeModules.LinkingManager.openURL(`http://localhost:3001/exhibits/${this.props.exhibitID}`)} >
+                        <Text style={stylesh.greeting}>Go Back to 2D Site</Text>
+                    </VrButton>
+                </View>
             </View>
-        )
+        );
     }
 }
 
-const styles = StyleSheet.create({
-    panel: {
-        // Fill the entire surface
-        width: 1000,
-        height: 600,
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    clipboardPanel: {
-        width: 300,
-        height: 400,
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    greetingBox: {
-        padding: 20,
-        backgroundColor: '#000000',
-        borderColor: '#639dda',
-        borderWidth: 2,
-    },
-    greeting: {
-        fontSize: 30,
-    },
-});
+const ConnectedButtonToSafety = connect(ButtonToSafety);
 
-AppRegistry.registerComponent('Clipboard', () => Clipboard);
-AppRegistry.registerComponent('ButtonToSafety', () => ButtonToSafety);
-AppRegistry.registerComponent('TestPanel', () => TestPanel);
+AppRegistry.registerComponent('ConnectedButtonToSafety', () => ConnectedButtonToSafety);
+AppRegistry.registerComponent('ConnectedStatusPanel', () => ConnectedStatusPanel);
+AppRegistry.registerComponent('ConnectedItemPanel', () => ConnectedItemPanel);
+AppRegistry.registerComponent('ConnectedItemList', () => ConnectedItemList);

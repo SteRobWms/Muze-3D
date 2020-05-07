@@ -12,17 +12,18 @@ function init(bundle, parent, options = {}) {
 
     // Render your app content to the default cylinder surface
     r360.renderToSurface(
-        r360.createRoot('ButtonToSafety', { /* initial props */ }),
+        r360.createRoot('ConnectedButtonToSafety', { /* initial props */ }),
         r360.getDefaultSurface()
     );
 
-    const rightPanel = new Surface(400, 400, Surface.SurfaceShape.Flat);
-    rightPanel.setAngle(0.1, 0.4);
+    // At top of screen, show current location info
+    const connectedStatusPanel = new Surface(400, 200, Surface.SurfaceShape.Flat);
+    connectedStatusPanel.setAngle(-0.475, 0.34, 0.11);
 
     r360.renderToSurface(
-        // This right here. Figuring out to put currentURL and exhibitID here took 5 hours. This lets TestPanel see the URL passed from the frontend link.
-        r360.createRoot('TestPanel', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]), test: "testing" }),
-        rightPanel
+        // This right here. Figuring out to put currentURL and exhibitID here took 5 hours. This lets StatusPanel see the URL passed from the frontend link.
+        r360.createRoot('ConnectedStatusPanel', { currentURL: window.location, exhibitID: parseInt(window.location.search.split('=')[1]), test: "testing" }),
+        connectedStatusPanel
     );
 
     // Load the initial environment
