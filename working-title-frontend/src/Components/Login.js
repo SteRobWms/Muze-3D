@@ -36,18 +36,6 @@ export default class Login extends React.Component {
             })
     }
 
-    // <div>
-
-    // < form name = "login" onSubmit = {(e) => this.login(e)
-    // }>
-    // <label>Username</label>
-    // <input onChange={(e) => this.handleChange(e)} name="username" type="text" required />
-    // <label>Password</label>
-    // <input onChange={(e) => this.handleChange(e)} name="password" type="password" required />
-    // <input type="submit" />
-    // </form >
-    // <Link to="/signup">Sign Up</Link>
-    // </div>
     render() {
         return (
             < div className="container-fluid" >
@@ -69,7 +57,7 @@ export default class Login extends React.Component {
                                                 <input type="password" onChange={(e) => this.handleChange(e)} id="inputPassword" name="password" className="form-control" placeholder="Password" required />
                                                 <label for="inputPassword">Password</label>
                                             </div>
-                                            <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                                            <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Log in</button>
                                             <div className="text-center">
                                                 <a className="small" href="http://localhost:3001/signup">Not a member yet? Sign up here!</a>
                                             </div>

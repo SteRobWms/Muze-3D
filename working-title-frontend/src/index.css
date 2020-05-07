@@ -13,7 +13,8 @@ code {
 }
 
 
-/* Start Bootstrap Snippet from https://startbootstrap.com/snippets/sign-in-split/ */
+/* Login and Signup page styling 
+Start Bootstrap Snippet from https://startbootstrap.com/snippets/sign-in-split/ */
 :root {
     --input-padding-x: 1.5rem;
     --input-padding-y: 0.75rem;
@@ -126,3 +127,13 @@ code {
       color: #777;
     }
   }
+
+/* Home page styling */
+.masthead {
+height: 100vh;
+min-height: 500px;
+background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
