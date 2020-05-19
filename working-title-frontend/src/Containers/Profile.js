@@ -114,7 +114,7 @@ export default class Profile extends React.Component {
                 <div>
                     <div className="container">
 
-                        <header className="jumbotron my-4" style={{ backgroundImage: "url(http://res.cloudinary.com/dalaru/image/upload/591w4perbzxawo217frkm65qdjxy.JPG)" }}>
+                        <header className="jumbotron my-4" style={{ backgroundImage: "url(http://picsum.photos/1000)" }}>
                             <h1 className="display-3" style={{ color: "white", textShadow: "2px 2px 2px #111111" }}>{this.state.user.username}'s Profile</h1>
                             <h2 style={{ color: "white", textShadow: "2px 2px 2px #111111" }}>Bio: {this.state.user.bio}
                             </h2>

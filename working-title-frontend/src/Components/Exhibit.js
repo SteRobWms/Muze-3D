@@ -115,10 +115,12 @@ export default class Exhibit extends React.Component {
                     <header className="jumbotron my-4" style={{ backgroundImage: `url(${this.state.exhibit.background_image})` }}>
                         <h1 className="display-3" style={{ color: "white", textShadow: "2px 2px 2px #111111" }}>{this.state.exhibit.name}</h1>
                         <h2 style={{ color: "white", textShadow: "2px 2px 2px #111111" }}>Description: {this.state.exhibit.description}</h2>
+                        {/* Link back to the parent Musuem */}
                         <a href={`http://localhost:3001/museums/${this.state.exhibit.museum.id}`}>
                             <h3 style={{ color: "white", textShadow: "2px 2px 2px #111111" }}>Parent Museum: {this.state.exhibit.museum.name}</h3>
                         </a>
                         <br />
+                        {/* Test if the user is the owner && if the exhibit has zero rooms. If both are true, display a button to delete the exhibit. Run the first test again below to determine whether to show the "Add Room" button. */}
                         {(this.state.exhibit.creator.id === parseInt(localStorage.user)) && this.state.exhibit.rooms.length === 0
                             ? <button type="button" className="btn btn-primary btn-lg" style={{ color: "white" }} onClick={() => this.deleteExhibit()}>
                                 Delete this Exhibit (You must delete its rooms first)
@@ -138,15 +140,14 @@ export default class Exhibit extends React.Component {
                             </button>
                         </a><br /><br />
                     </header>
-                    <h2>Rooms:</h2>
+                    <h2>Rooms</h2>
                     <div className="row text-center">
                         {this.state.exhibit.rooms.length > 0
                             ? this.state.exhibit.rooms.map((room, idx) => {
                                 return (
-                                    // <h4>Room {room.id}</h4>
-                                    // <a href={`http://localhost:3001/rooms/${room.id}`} key={idx}>
-                                    <RoomTile {...room} deleteRoom={this.deleteRoom} handleUpdateRoom={this.handleUpdateRoom} addItem={this.addItem} updateState={this.updateState} />
-                                    // </a>
+
+                                    <RoomTile key={idx} {...room} deleteRoom={this.deleteRoom} handleUpdateRoom={this.handleUpdateRoom} addItem={this.addItem} updateState={this.updateState} />
+
                                 )
                             })
                             : false

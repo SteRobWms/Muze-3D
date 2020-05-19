@@ -60,7 +60,7 @@ export default class Museum extends React.Component {
                             }
                         </h3>
                         <br />
-                        <h2>Exhibits: </h2>
+                        <h2>Exhibits </h2>
                         <div className="row text-center">
                             {this.state.museum.exhibits.length > 0
                                 ? this.state.museum.exhibits.map((exhibit, idx) => {

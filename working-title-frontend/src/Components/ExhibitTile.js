@@ -13,8 +13,6 @@ export default class ExhibitTile extends React.Component {
                     <div className="card-body">
                         <h4 className="card-title">Exhibit Name: {this.props.name}</h4>
                         <p className="card-text">Description: {this.props.description}</p>
-                        <p className="card-text">City: {this.props.city}</p>
-                        <p className="card-text">Country: {this.props.country}</p>
                     </div>
                     <div className="card-footer">
                         <a href={`http://localhost:3001/exhibits/${this.props.id}`} className="btn btn-primary">Visit Exhibit</a>

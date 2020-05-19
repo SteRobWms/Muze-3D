@@ -30,7 +30,7 @@ export default class MuseumContainer extends React.Component {
             <div>
                 <div className="container">
                     <div>
-                        <header className="jumbotron my-4" style={{ backgroundImage: `url(http://res.cloudinary.com/dalaru/image/upload/591w4perbzxawo217frkm65qdjxy.JPG)` }}>
+                        <header className="jumbotron my-4" style={{ backgroundImage: `url(https://res.cloudinary.com/dalaru/image/upload/c_scale,w_759/v1588790374/8na88admhpg7al6n2vqn62qwircu.jpg)`, backgroundSize: "100%", backgroundPosition: "center" }}>
                             <h1 className="display-3" style={{ color: "white", textShadow: "2px 2px 2px #111111" }}>Museums</h1>
                             <br />
                         </header>
@@ -42,7 +42,7 @@ export default class MuseumContainer extends React.Component {
                         </div>
                         <footer className="py-5 bg-dark">
                             <div className="container">
-                                <p className="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+                                <p className="m-0 text-center text-white">Copyright &copy; Muze 3D 2020</p>
                             </div>
                         </footer>
                     </div>
