@@ -1,6 +1,7 @@
 import React from 'react'
 import RoomTile from './RoomTile'
-import EditExhibitForm from './EditExhibitForm'
+// import { Modal } from 'react-bootstrap'
+// import EditExhibitForm from './EditExhibitForm'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../../node_modules/startbootstrap-heroic-features/css/heroic-features.css'
 
@@ -146,7 +147,7 @@ export default class Exhibit extends React.Component {
                             ? this.state.exhibit.rooms.map((room, idx) => {
                                 return (
 
-                                    <RoomTile key={idx} {...room} deleteRoom={this.deleteRoom} handleUpdateRoom={this.handleUpdateRoom} addItem={this.addItem} updateState={this.updateState} />
+                                    <RoomTile key={idx} {...room} creator={this.state.exhibit.creator.id} deleteRoom={this.deleteRoom} handleUpdateRoom={this.handleUpdateRoom} addItem={this.addItem} updateState={this.updateState} />
 
                                 )
                             })

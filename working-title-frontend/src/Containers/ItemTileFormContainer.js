@@ -1,6 +1,7 @@
 import React from 'react'
 import ItemForm from '../Components/ItemForm'
 import ItemTile from '../Components/ItemTile'
+import { Modal } from 'react-bootstrap'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../../node_modules/startbootstrap-heroic-features/css/heroic-features.css'
 
@@ -76,11 +77,14 @@ export default class ItemTileFormContainer extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Item name: {this.props.name ? this.props.name + " " : "n/a"}
-                    <button onClick={() => this.deleteItem()}>Delete Item</button>
-                    <button onClick={() => this.toggleExpanded()}>{this.state.expanded ? "Collapse" : "Expand"}</button>
-                </h3>
+            <div className="card-text" style={{ fontWeight: "bold" }}>
+                {this.props.name ? this.props.name : "n/a"}
+                <br />
+                <button className="btn-sm" style={{ color: "red", fontWeight: "bold", margin: "1px" }} onClick={() => this.deleteItem()}>Delete</button>
+                <button className="btn-sm" style={{ color: "green", fontWeight: "bold", margin: "1px" }} onClick={() => this.toggleExpanded()}>View</button>
+                <br />
+                <br />
+
                 {this.state.expanded
                     ?
                     <div>
