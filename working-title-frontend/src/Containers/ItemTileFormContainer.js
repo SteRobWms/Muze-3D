@@ -1,6 +1,6 @@
 import React from 'react'
 import ItemForm from '../Components/ItemForm'
-import ItemTile from '../Components/ItemTile'
+// import ItemTile from '../Components/ItemTile'
 import { Modal } from 'react-bootstrap'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../../node_modules/startbootstrap-heroic-features/css/heroic-features.css'
@@ -80,29 +80,57 @@ export default class ItemTileFormContainer extends React.Component {
             <div className="card-text" style={{ fontWeight: "bold" }}>
                 {this.props.name ? this.props.name : "n/a"}
                 <br />
-                <button className="btn-sm" style={{ color: "red", fontWeight: "bold", margin: "1px" }} onClick={() => this.deleteItem()}>Delete</button>
+                {this.props.creator === parseInt(localStorage.user)
+                    ? <button className="btn-sm" style={{ color: "red", fontWeight: "bold", margin: "1px" }} onClick={() => this.deleteItem()}>Delete</button>
+                    : false
+                }
                 <button className="btn-sm" style={{ color: "green", fontWeight: "bold", margin: "1px" }} onClick={() => this.toggleExpanded()}>View</button>
                 <br />
                 <br />
 
                 {this.state.expanded
                     ?
-                    <div>
-                        <button onClick={() => this.setState({ method: "view" })}>View Info</button>
-                        <button onClick={() => this.setState({ method: "edit" })}>Edit Item</button>
-                        <button onClick={() => this.setState({ method: "upload" })}>Upload Image</button>
-                        {this.state.method === "view"
-                            ? <ItemTile {...this.props} />
-                            : this.state.method === "edit"
-                                ? <ItemForm updateState={this.props.updateState} {...this.props} changePanelToView={this.changePanelToView} />
+                    <Modal className="card-h-100" show={true}>
+                        <Modal.Header>
+                            <div className="container">
+                                <div className="card-header" style={{ textAlign: "center", fontSize: "1.5em", fontWeight: "bold" }}>{this.props.name ? this.props.name : "Item Name Unknown"}</div>
+                                <br />
+                                <img className="card-img-top" src={this.props.image} alt={this.props.name ? `Add an image for ${this.props.name}` : `Add an image for untitled item`} />
+                            </div>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {this.props.creator === parseInt(localStorage.user)
+                                ? <ul className="nav nav-fill nav-tabs">
+                                    <button className="nav-item" onClick={() => this.setState({ method: "view" })}>View Info</button>
+                                    <button className="nav-item" onClick={() => this.setState({ method: "edit" })}>Edit Item</button>
+                                    <button className="nav-item" onClick={() => this.setState({ method: "upload" })}>Upload Image</button>
+                                </ul>
+                                : false
+                            }
+                            {this.state.method === "view"
+                                ?
+                                <div className="card-body">
+                                    <p className="card-text">Creator/Source: {this.props.creator}</p>
+                                    <p className="card-text">Description: {this.props.description}</p>
+                                    <p className="card-text">Year: {this.props.year_of_origin}</p>
+                                    <p className="card-text">Item Code: {this.props.item_code}</p>
 
-                                : <form onSubmit={(event) => this.handleSubmit(this.props.room_id, this.props.exhibit_id, event)}><label htmlFor="image">Upload Image
-                                        <input type="file" name="image" accept="image/*" />
-                                </label><br />
-                                    <input type="submit" value="submit" />
-                                </form>
-                        }
-                    </div>
+                                </div>
+                                // <ItemTile {...this.props} />
+                                : this.state.method === "edit"
+                                    ? <ItemForm updateState={this.props.updateState} {...this.props} changePanelToView={this.changePanelToView} />
+
+                                    : <form className="card-body" onSubmit={(event) => this.handleSubmit(this.props.room_id, this.props.exhibit_id, event)}><label htmlFor="image" style={{ fontWeight: "bold" }}>Upload Image
+                                        <input type="file" name="image" accept="image/*" required />
+                                    </label><br />
+                                        <input type="submit" value="submit" />
+                                    </form>
+                            }
+                        </Modal.Body>
+                        <Modal.Footer style={{ alignContent: "center", justifyContent: "center" }}>
+                            <button className="btn btn-primary b tn-lg" onClick={() => this.toggleExpanded()}>Close Item</button>
+                        </Modal.Footer>
+                    </Modal>
                     : false
                 }
             </div>

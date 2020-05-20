@@ -60,7 +60,7 @@ export default class RoomTile extends React.Component {
                             {this.props.items && this.props.items.length > 0
                                 ? this.props.items.map((item, idx) => {
                                     return (
-                                        <ITFC key={idx} {...item} roomId={this.roomId} exhibit_id={this.props.exhibit_id} updateState={this.props.updateState} />
+                                        <ITFC key={idx} creator={this.props.creator} {...item} roomId={this.roomId} exhibit_id={this.props.exhibit_id} updateState={this.props.updateState} />
                                         // {this.state.showItemForm === false
                                         //     ? <ItemTile key={idx} {...item} roomId={this.roomId} />
                                         //     : <ItemForm key={idx} {...item} roomId={this.roomId} />
