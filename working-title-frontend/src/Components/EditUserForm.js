@@ -3,7 +3,6 @@ import React from 'react'
 export default class EditUserForm extends React.Component {
 
     handleChange = (e) => {
-        // console.log(e.target)
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -26,7 +25,6 @@ export default class EditUserForm extends React.Component {
             })
         })
             .then(response => response.json())
-            // .then(data => { console.log(data); debugger })
             .then(user => { this.props.updateBioState(user.bio) })
     }
 

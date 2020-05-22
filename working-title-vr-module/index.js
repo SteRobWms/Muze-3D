@@ -4,92 +4,77 @@ import {
     Environment,
     Image,
     NativeModules,
-    StyleSheet,
     Text,
     View,
     VrButton
 } from 'react-360';
+// import ConnectedItemContainer from './itemContainer';
+import ConnectedItemList from './itemList';
+import ConnectedItemPanel from './itemPanel';
+import ConnectedStatusPanel from './statusPanel';
+import styles from './stylesheet';
+import { connect, initialState, nextRoom, previousRoom } from './store';
 
-export default class Clipboard extends React.Component {
-    render() {
-        return (
-            <View style={styles.clipboardPanel}>
-                <View style={styles.greetingBox}>
-                    <Text style={styles.greeting}>Here is where I may display VR context info</Text>
-                </View>
-            </View>
-        );
+
+// Hold misc floating buttons here in index
+class ButtonToSafety extends React.Component {
+
+    componentDidMount() {
+        fetch(`http://localhost:3000/exhibits/${this.props.exhibitID}`)
+            .then(response => response.json())
+            .then(exhibit => {
+                console.log(exhibit);
+                initialState(exhibit);
+                Environment.setBackgroundImage({ uri: exhibit.rooms[0].background_image })
+            })
     }
-};
 
-export class ButtonToSafety extends React.Component {
     render() {
         return (
-            <View style={styles.panel}>
-                <View style={styles.greetingBox}>
-                    <VrButton onClick={() => NativeModules.LinkingManager.openURL('http://localhost:3001/')} >
-                        <Text style={styles.greeting}>Go Back to 2D Site</Text>
-                    </VrButton>
-                </View>
+            <View>
+                <VrButton style={styles.button} onClick={() => NativeModules.LinkingManager.openURL(`http://localhost:3001/exhibits/${this.props.exhibitID}`)} >
+                    <Text style={styles.textSize}>Go Back to 2D Site</Text>
+                </VrButton>
             </View>
         );
     }
 }
 
-export class TestPanel extends React.Component {
-
-    state = {
-        museum: {
-            background_image: "https://picsum.photos/300"
-        }
-    }
-
-    componentDidMount() {
-        fetch("http://localhost:3000/museums/1")
-            .then(response => response.json())
-            .then(museum => {
-                this.setState({ ...this.state, museum });
-                Environment.setBackgroundImage({ uri: this.state.museum.background_image });
-            })
-
-    }
+class PrevRoomButton extends React.Component {
 
     render() {
         return (
-            <View style={styles.panel} >
-                <Image source={{ uri: this.state.museum.background_image }} />
+            <View>
+                <VrButton style={styles.button} onClick={() => previousRoom()}>
+                    <Text style={styles.infoHeader}>Previous Room</Text>
+                </VrButton>
             </View>
         )
     }
 }
 
-const styles = StyleSheet.create({
-    panel: {
-        // Fill the entire surface
-        width: 1000,
-        height: 600,
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    clipboardPanel: {
-        width: 300,
-        height: 400,
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    greetingBox: {
-        padding: 20,
-        backgroundColor: '#000000',
-        borderColor: '#639dda',
-        borderWidth: 2,
-    },
-    greeting: {
-        fontSize: 30,
-    },
-});
+class NextRoomButton extends React.Component {
 
-AppRegistry.registerComponent('Clipboard', () => Clipboard);
-AppRegistry.registerComponent('ButtonToSafety', () => ButtonToSafety);
-AppRegistry.registerComponent('TestPanel', () => TestPanel);
+    render() {
+        return (
+            <View>
+                <VrButton style={styles.button} onClick={() => nextRoom()}>
+                    <Text style={styles.infoHeader}>Next Room</Text>
+                </VrButton>
+            </View>
+        )
+    }
+}
+
+
+const ConnectedPrevRoomButton = connect(PrevRoomButton);
+const ConnectedNextRoomButton = connect(NextRoomButton);
+const ConnectedButtonToSafety = connect(ButtonToSafety);
+
+AppRegistry.registerComponent('ConnectedNextRoomButton', () => ConnectedNextRoomButton);
+AppRegistry.registerComponent('ConnectedPrevRoomButton', () => ConnectedPrevRoomButton);
+AppRegistry.registerComponent('ConnectedButtonToSafety', () => ConnectedButtonToSafety);
+// AppRegistry.registerComponent('ConnectedItemContainer', () => ConnectedItemContainer);
+AppRegistry.registerComponent('ConnectedItemList', () => ConnectedItemList);
+AppRegistry.registerComponent('ConnectedItemPanel', () => ConnectedItemPanel);
+AppRegistry.registerComponent('ConnectedStatusPanel', () => ConnectedStatusPanel);
