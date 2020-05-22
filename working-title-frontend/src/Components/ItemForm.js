@@ -10,7 +10,6 @@ export default class ItemForm extends React.Component {
         })
     }
 
-    // put "/exhibits/:exhibit/rooms/:room/items/:item", to: "items#update"
     updateItem = (roomId, exhibitId, formData) => {
         const config = {
             method: "PATCH",
@@ -37,7 +36,6 @@ export default class ItemForm extends React.Component {
     }
 
     handleChange = (e) => {
-        // console.log(e.target)
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -79,6 +77,7 @@ export default class ItemForm extends React.Component {
                         <input type="text" name="city_of_origin" value={this.state.city_of_origin} onChange={(e) => this.handleChange(e)} />
                     </label><br />
 
+                    {/* This section included for potential future use with positioning in the VR space */}
                     {/* <label htmlFor="width" style={{ fontWeight: "bold" }}>Width (in meters):
                 <input type="number" name="width" value={this.state.width} onChange={(e) => this.handleChange(e)} />
                     </label><br />

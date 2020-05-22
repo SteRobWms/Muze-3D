@@ -28,7 +28,6 @@ export default class Museum extends React.Component {
                 if (data.error) { alert(data.error) }
                 else { alert(data.message); window.location.href = `http://localhost:3001/profile` }
             })
-        // .then(alert("Room Deleted Successfully"))
     }
 
     render() {

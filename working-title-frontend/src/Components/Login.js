@@ -1,11 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import '../../src/index.css'
 
 export default class Login extends React.Component {
 
     handleChange = (e) => {
-        // console.log(e.target)
         this.setState({
             [e.target.name]: e.target.value
         })

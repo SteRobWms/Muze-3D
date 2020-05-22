@@ -25,7 +25,6 @@ export default class RoomTile extends React.Component {
             <div className="col-lg-3 col-md-6 mb-4">
                 <div className="card h-100" >
                     <img className="card-img-top" src={this.props.background_image} alt="Upload an Image" />
-                    {/* <a href={this.props.background_image}><img style={{ maxWidth: "100px" }} src={this.props.background_image} alt="None" /></a><br /> */}
                     <br />
                     {this.props.creator === parseInt(localStorage.user)
                         ?
@@ -60,11 +59,7 @@ export default class RoomTile extends React.Component {
                             {this.props.items && this.props.items.length > 0
                                 ? this.props.items.map((item, idx) => {
                                     return (
-                                        <ITFC key={idx} creator={this.props.creator} {...item} roomId={this.roomId} exhibit_id={this.props.exhibit_id} updateState={this.props.updateState} />
-                                        // {this.state.showItemForm === false
-                                        //     ? <ItemTile key={idx} {...item} roomId={this.roomId} />
-                                        //     : <ItemForm key={idx} {...item} roomId={this.roomId} />
-                                        // }
+                                        <ITFC key={idx} {...item} roomId={this.roomId} exhibit_id={this.props.exhibit_id} user={this.props.creator} updateState={this.props.updateState} />
                                     )
                                 })
                                 : false

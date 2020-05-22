@@ -5,8 +5,6 @@ import EditUserForm from '../Components/EditUserForm'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../../node_modules/startbootstrap-heroic-features/css/heroic-features.css'
 
-// Profile image url "http://res.cloudinary.com/dalaru/image/upload/591w4perbzxawo217frkm65qdjxy.JPG"
-
 export default class Profile extends React.Component {
 
     state = {
@@ -38,7 +36,6 @@ export default class Profile extends React.Component {
     }
 
     handleChange = (e) => {
-        // console.log(e.target)
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -61,7 +58,6 @@ export default class Profile extends React.Component {
             })
         })
             .then(response => response.json())
-            // .then(data => { console.log(data); debugger })
             .then(user => { this.updateBioState(user.bio) })
     }
 
@@ -74,43 +70,6 @@ export default class Profile extends React.Component {
     render() {
         if (this.state.user) {
             return (
-                // <div>
-                //     <h1>Username: {this.state.user.username}</h1>
-
-                //     <h2>Bio: {this.state.user.bio}</h2>
-                //     <button onClick={this.toggleEdit}>Edit Bio</button>
-                //     {this.state.showEdit ? <EditUserForm {...this.state} handleSubmit={this.handleSubmit} toggleEdit={this.toggleEdit} updateBioState={this.updateBioState} /> : null}
-
-
-                //     <h2>Museums:</h2>
-                //     <a href={`http://localhost:3001/museums/new`}>
-                //         <button>
-                //             Create a New Museum!
-                //         </button>
-                //     </a>
-                //     {this.state.user.museums.length > 0
-                //         ? this.state.user.museums.map((museum, idx) => <MuseumTile key={idx} {...museum} />)
-                //         : <h4>"You haven't created any museums yet!"</h4>}
-
-
-                //     {/* <h2>Favorite Museums:</h2> {this.state.user.favorite_museums
-                //         ? this.state.user.favorite_museums.map((museum, idx) => <MuseumTile key={idx} {...museum} />)
-                //         : <h4>"You haven't liked any museums yet!"</h4>} */}
-
-                //     <h2>Exhibits:</h2> {this.state.user.exhibits.length > 0
-                //         ? this.state.user.exhibits.map((exhibit, idx) => <ExhibitTile key={idx} {...exhibit} />)
-                //         : <h4>"You haven't created any exhibits yet!"</h4>}
-
-
-                //     {/* <h2>Favorite exhibits:</h2> {this.state.user.favorite_exhibits
-                //         ? this.state.user.favorite_exhibits.map((exhibit, idx) => <ExhibitTile key={idx} {...exhibit} />)
-                //         : <h4>"You haven't liked any exhibits yet!"</h4>} */}
-                // </div>
-                // BREAK
-                // BETWEEN
-                // NOSTYLE
-                // AND
-                // BOOTSTRAP
                 <div>
                     <div className="container">
 
@@ -162,5 +121,4 @@ export default class Profile extends React.Component {
             )
         }
     }
-
 }

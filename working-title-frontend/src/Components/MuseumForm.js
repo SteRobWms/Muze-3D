@@ -9,9 +9,6 @@ const MuseumForm = props => {
         event.preventDefault()
         const formData = new FormData(event.target)
         submitMuseum(formData)
-            // ex had setPost and (data.post)
-            // .then(data => props.setMuseum(data.museum))
-            // .then(response => response.json())
             .then(museumData => { window.location.href = `http://localhost:3001/museums/${museumData.museum.id}` })
             .catch(console.error);
     }
@@ -49,7 +46,6 @@ const MuseumForm = props => {
                                     <label htmlFor="inputCity">City
                                 </label>
                                 </div>
-                                {/* <div className="form-label-group"> */}
                                 <select name="category" id="inputCategory" required>
 
                                     <option value="">Select a Category</option>
@@ -60,7 +56,6 @@ const MuseumForm = props => {
                                 </select>
                                 <label htmlFor="inputCategory">
                                 </label>
-                                {/* </div> */}
                                 <div className="form-label-group">
                                     <input type="file" name="background_image" accept="image/*" id="inputImage" required />
                                     <label htmlFor="inputImage">

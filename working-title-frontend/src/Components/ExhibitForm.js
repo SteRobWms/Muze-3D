@@ -78,27 +78,4 @@ export default class ExhibitForm extends React.Component {
             </div >
         );
     }
-    // return(
-    //         <form onSubmit = {(event) => this.handleSubmit(event)}>
-    // <label htmlFor="museum_id">Museum
-    //                 <select type="select" name="museum_id" required>
-    //         <option>Select a Museum</option>
-    //         {this.state.user && this.state.user.museums.length > 0
-    //             ? this.state.user.museums.map(museum => { return (<option key={museum.id} value={museum.id}>{museum.name}</option>) })
-    //             : null}
-    //     </select>
-    // </label><br />
-    // <label htmlFor="name">Exhibit Name
-    //             <input type="text" name="name" required />
-    // </label><br />
-    // <label htmlFor="description">Description
-    //             <input type="text" name="description" required />
-    // </label><br />
-    // <label htmlFor="background_image">Upload Image
-    //             <input type="file" name="background_image" required accept="image/*" />
-    // </label><br />
-    // <input type="submit" value="Submit" />
-    //         </form >
-    //     )
-    // };
 }

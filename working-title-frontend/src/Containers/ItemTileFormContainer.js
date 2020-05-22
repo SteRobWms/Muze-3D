@@ -1,6 +1,5 @@
 import React from 'react'
 import ItemForm from '../Components/ItemForm'
-// import ItemTile from '../Components/ItemTile'
 import { Modal } from 'react-bootstrap'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../../node_modules/startbootstrap-heroic-features/css/heroic-features.css'
@@ -49,22 +48,6 @@ export default class ItemTileFormContainer extends React.Component {
             .catch(console.error)
     }
 
-    // name: null
-    // description: null
-    // creator: null
-    // year_of_origin: null
-    // item_code: null
-    // country_of_origin: null
-    // state_of_origin: null
-    // city_of_origin: null
-    // width: null
-    // height: null
-    // depth: null
-    // x_pos: null
-    // y_pos: null
-    // z_pos: null
-    // model: null
-
     deleteItem = () => {
         fetch(`http://localhost:3000/exhibits/${this.props.exhibit_id}/rooms/${this.props.roomId}/items/${this.props.id}`,
             {
@@ -80,7 +63,7 @@ export default class ItemTileFormContainer extends React.Component {
             <div className="card-text" style={{ fontWeight: "bold" }}>
                 {this.props.name ? this.props.name : "n/a"}
                 <br />
-                {this.props.creator === parseInt(localStorage.user)
+                {this.props.user === parseInt(localStorage.user)
                     ? <button className="btn-sm" style={{ color: "red", fontWeight: "bold", margin: "1px" }} onClick={() => this.deleteItem()}>Delete</button>
                     : false
                 }
@@ -99,7 +82,7 @@ export default class ItemTileFormContainer extends React.Component {
                             </div>
                         </Modal.Header>
                         <Modal.Body>
-                            {this.props.creator === parseInt(localStorage.user)
+                            {this.props.user === parseInt(localStorage.user)
                                 ? <ul className="nav nav-fill nav-tabs">
                                     <button className="nav-item" onClick={() => this.setState({ method: "view" })}>View Info</button>
                                     <button className="nav-item" onClick={() => this.setState({ method: "edit" })}>Edit Item</button>
@@ -116,7 +99,6 @@ export default class ItemTileFormContainer extends React.Component {
                                     <p className="card-text">Item Code: {this.props.item_code}</p>
 
                                 </div>
-                                // <ItemTile {...this.props} />
                                 : this.state.method === "edit"
                                     ? <ItemForm updateState={this.props.updateState} {...this.props} changePanelToView={this.changePanelToView} />
 

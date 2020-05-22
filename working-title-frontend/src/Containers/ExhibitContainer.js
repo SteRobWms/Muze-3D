@@ -50,14 +50,3 @@ export default class ExhibitContainer extends React.Component {
         )
     }
 }
-{/* <div>
-    {this.state.displayExhibits
-        ? this.state.displayExhibits.map((exhibit, idx) => {
-            return (
-                <a classname="list" href={`http://localhost:3001/exhibits/${exhibit.id}`} key={idx} >
-                    <ExhibitTile {...exhibit} />
-                </a>
-            )
-        })
-        : 'loading...'}
-</div > */}

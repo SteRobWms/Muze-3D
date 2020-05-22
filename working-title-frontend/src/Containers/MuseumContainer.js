@@ -2,7 +2,6 @@ import React from 'react'
 import MuseumTile from '../Components/MuseumTile'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../../node_modules/startbootstrap-heroic-features/css/heroic-features.css'
-// import Museum from '../Components/Museum'
 
 export default class MuseumContainer extends React.Component {
 

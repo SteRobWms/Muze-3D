@@ -1,11 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import '../../src/index.css'
 
 export default class SignUp extends React.Component {
 
     handleChange = (e) => {
-        // console.log(e.target)
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -57,17 +55,6 @@ export default class SignUp extends React.Component {
 
     render() {
         return (
-            // <div>
-            //     <h2>Sign Up</h2>
-            //     <form name="register" onSubmit={(e) => this.signUp(e)}>
-            //         <label>Username</label>
-            //         <input onChange={(e) => this.handleChange(e)} name="username" type="text" required />
-            //         <label>Password</label>
-            //         <input onChange={(e) => this.handleChange(e)} name="password" type="password" required />
-            //         <input type="submit" />
-            //     </form>
-            //     <Link to="/login">Log In</Link>
-            // </div>
             < div className="container-fluid" >
                 <div className="row no-gutter">
                     <div className="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
