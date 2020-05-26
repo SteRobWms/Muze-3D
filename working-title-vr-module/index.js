@@ -25,7 +25,7 @@ class ButtonToSafety extends React.Component {
             .then(exhibit => {
                 console.log(exhibit);
                 initialState(exhibit);
-                Environment.setBackgroundImage({ uri: exhibit.rooms[0].background_image })
+                exhibit.rooms[0] ? exhibit.rooms[0].background_image ? Environment.setBackgroundImage({ uri: exhibit.rooms[0].background_image }) : null : null
             })
     }
 
