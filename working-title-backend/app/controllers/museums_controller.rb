@@ -12,6 +12,7 @@ class MuseumsController < ApplicationController
     end
 
     def new
+        # git test
     end
 
     def create
