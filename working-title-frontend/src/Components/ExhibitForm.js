@@ -33,26 +33,49 @@ export default class ExhibitForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={(event) => this.handleSubmit(event)}>
-                <label htmlFor="museum_id">Museum
-                    <select type="select" name="museum_id" required>
-                        <option>Select a Museum</option>
-                        {this.state.user && this.state.user.museums.length > 0
-                            ? this.state.user.museums.map(museum => { return (<option key={museum.id} value={museum.id}>{museum.name}</option>) })
-                            : null}
-                    </select>
-                </label><br />
-                <label htmlFor="name">Exhibit Name
-                <input type="text" name="name" required />
-                </label><br />
-                <label htmlFor="description">Description
-                <input type="text" name="description" required />
-                </label><br />
-                <label htmlFor="background_image">Upload Image
-                <input type="file" name="background_image" required accept="image/*" />
-                </label><br />
-                <input type="submit" value="Submit" />
-            </form>
-        )
-    };
+            <div className="formBody">
+                <div className="row">
+                    <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div className="card card-signin my-5">
+                            <div className="card-body">
+                                <h5 className="card-title text-center">Create Exhibit</h5>
+
+
+                                <form className="form-signin" onSubmit={(event) => this.handleSubmit(event)}>
+
+                                    <label htmlFor="museum_id">Museum</label>
+                                    <select type="select" name="museum_id" id="inputMuseumId" required>
+                                        <option>Select a Museum</option>
+                                        {this.state.user && this.state.user.museums.length > 0
+                                            ? this.state.user.museums.map(museum => { return (<option key={museum.id} value={museum.id}>{museum.name}</option>) })
+                                            : null}
+                                    </select>
+
+                                    <div className="form-label-group">
+                                        <input type="text" name="name" id="inputName" placeholder="Exhibit Name" autoFocus required />
+                                        <label htmlFor="inputName">Exhibit Name
+                                    </label>
+                                    </div>
+
+                                    <div className="form-label-group">
+                                        <input type="text" name="description" id="inputDescription" placeholder="Description" />
+                                        <label htmlFor="inputDescription" required>Description
+                                    </label>
+                                    </div>
+
+                                    <div className="form-label-group">
+                                        <input type="file" name="background_image" accept="image/*" id="inputImage" required />
+                                        <label htmlFor="inputImage">
+                                        </label>
+                                    </div>
+
+                                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Submit Exhibit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div >
+        );
+    }
 }

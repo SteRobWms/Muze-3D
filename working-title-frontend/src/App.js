@@ -15,6 +15,8 @@ import NavBar from './Containers/NavBar';
 import SignUp from './Components/SignUp';
 import Profile from './Containers/Profile';
 import VrPortal from './Containers/VrPortal';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/startbootstrap-heroic-features/css/heroic-features.css';
 
 export default class App extends React.Component {
 
@@ -81,7 +83,7 @@ export default class App extends React.Component {
         return (
             <BrowserRouter>
                 <div className="App">
-                    <NavBar loggedInTrue={this.loggedInTrue} loginStatus={this.state.loginStatus} />
+                    <NavBar className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" loggedInTrue={this.loggedInTrue} loginStatus={this.state.loginStatus} />
                     {/* <DynamicComponent currentDisplay={this.state.currentDisplay} /> */}
                     <Switch>
                         <Route exact path="/" render={(routerProps) => <Home {...routerProps} />} />

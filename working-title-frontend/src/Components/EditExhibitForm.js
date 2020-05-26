@@ -46,7 +46,6 @@ export default class EditExhibitForm extends React.Component {
     handleEditSubmit = (event) => {
         event.preventDefault()
         const formData = new FormData(event.target)
-        // event.target.reset
         this.updateExhibit(formData)
             .then(exhibit => this.props.updateState(exhibit))
             .catch(console.error);
@@ -55,7 +54,6 @@ export default class EditExhibitForm extends React.Component {
     render() {
         return (
             <div>
-                {/* <button onClick={() => this.props.toggleEdit()}>Cancel</button><br /><br /> */}
                 <form onSubmit={(event) => { this.handleEditSubmit(event); this.props.toggleEdit() }}>
                     <label>Change Description </label>
                     <input name="description" type="text" placeholder={this.props.exhibit.description} />
